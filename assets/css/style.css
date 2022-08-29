@@ -1,1 +1,34 @@
 /* CSS file */
+* {
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+}
+
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/free-photo/healthy-life-sport-concept-sneakers-with-apples-towel-bottle-water-wooden-background-copy-space_1220-1474.jpg?w=1800&t=st=1661792367~exp=1661792967~hmac=b4c659e78a3194557b1fc44b536f3d4be08c2f131d4fb75a5000ff868426746f");
+
+  /* Set a specific height */
+  height: 100vh;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
