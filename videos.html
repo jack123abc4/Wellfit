@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WellFit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets\css\videos.css">
     <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Arimo&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/45142689e7.js" crossorigin="anonymous"></script>
 
-    <!-- Bulma Version 0.9.0-->
  <!-- <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" /> -->
     <!-- <link rel="stylesheet" type="text/css" href="../css/landing.css"> -->
     <link rel="stylesheet" href="./assets\css\style.css">
+    <title>Recipes</title>
 </head>
-
 <body>
- 
-   
+
     <section class="hero is-info is-fullheight hero-image">
         <div class="hero-head">
             <nav class="navbar">
@@ -70,29 +70,29 @@
                 <div class="container has-text-centered">
                     <div class="column is-6 is-offset-3">
                         <h1 class="title">
-                            Welcome to WellFit!
+                            Watch your Recipes in Action
                         </h1>
                         <div></div>
                         <div></div>
+                        <input id="recipe-search-input" type="text">
+                        <button id="recipe-search-btn">Search</button>
+                        <div>
+                            <h2></h2>
+                            <p></p>
+                            <ul></ul>
+                            <img src="" alt="">
+                        </div>
+                        <div></div>
                         <h3 class="subtitle has-text-centered">
-                            WellFit is your one-stop shop for all your nutrition needs
+                            <iframe id="ytplayer" type="text/html" width="640" height="360"
+                            src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
+                            frameborder="0"></iframe>
                         </h3>
-                        <div class="field is-grouped">
-                            <p class="control">
-                                <a class="button is-white is-outlined" href="#">
-                                    <span class="icon">
-                                        <i class="fa-solid fa-inbox"></i>
-                                    </span>
-                                    <span>Learn More</span>
-                                </a>
                         </div>
                     </div>
                 </div>
             </div> 
 
-    </section>
-    <script async type="text/javascript" src="../js/bulma.js"></script>
-    <script src="assets\js\script.js"></script>
+    
 </body>
-
 </html>
