@@ -4,7 +4,11 @@ var recipeParagraph = document.querySelector("p");
 var recipeList = document.querySelector("ul");
 var recipeImage = document.querySelector("img");
 
-var fullURL = "https://api.edamam.com/api/recipes/v2?type=public&q=" + "fried chicken" + "&app_id=03f13ddd&app_key=02579918e4ba389d465eaa6dd2ed2a99"
+var backButton = document.createElement("button");
+backButton.setAttribute("id", "back-btn");
+backButton.textContent = "Back";
+
+
 
 function displaySingleRecipe(params) {
     console.log(params);
@@ -12,24 +16,13 @@ function displaySingleRecipe(params) {
     var searchTerm = splitParams[0].split("=")[1].replace("%20", " ");
     var recipeNum = splitParams[1].split("=")[1];
     console.log(searchTerm,recipeNum);
-    console.log(searchTermToURL(searchTerm));
-    var results = getResults(searchTerm);
-    console.log(results);
-    var recipe = results.hits[recipeNum].recipe;
-    console.log(recipe);
-    console.log(recipe.label);
-    recipeHeader.textContent = recipe.label;
-    recipeImage.setAttribute("src",recipe.image);
-    recipeImage.setAttribute("id","recipe-thumbnail");
-    // recipeParagraph.textContent = "This is the recipe."
-    for (var i = 0; i < recipe.ingredientLines.length; i++) {
-        var recipeLine = document.createElement("li");
-        recipeLine.textContent = recipe.ingredientLines[i];
-        recipeList.appendChild(recipeLine);
-    }
+    var fullURL = searchTermToURL(searchTerm);
+    getResults(fullURL,recipeNum);
+    
+    
 }
 
-function getResults(searchTerm) {
+function getResults(fullURL,recipeNum) {
     fetch(fullURL, {
         method: 'GET', //GET is the default.
         })
@@ -39,6 +32,21 @@ function getResults(searchTerm) {
         })
         .then(function (data) {
             console.log(data);
+            var recipe = data.hits[recipeNum].recipe;
+            console.log(recipe);
+            console.log(recipe.label);
+            recipeHeader.textContent = recipe.label;
+            recipeImage.setAttribute("src",recipe.image);
+            recipeImage.setAttribute("id","recipe-thumbnail");
+            // recipeParagraph.textContent = "This is the recipe."
+            for (var i = 0; i < recipe.ingredientLines.length; i++) {
+                var recipeLine = document.createElement("li");
+                recipeLine.textContent = recipe.ingredientLines[i];
+                recipeList.appendChild(recipeLine);
+            }
+            
+            
+            mainDiv.appendChild(backButton);
             return data;
         })
         .catch(function(error) {
@@ -47,7 +55,11 @@ function getResults(searchTerm) {
 }
 
 function searchTermToURL(searchTerm) {
-    return ("https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=03f13ddd&app_key=02579918e4ba389d465eaa6dd2ed2a99")
+    return ("https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=03f13ddd&app_key=02579918e4ba389d465eaa6dd2ed2a99");
 }
 
 displaySingleRecipe(window.location.search);
+
+backButton.addEventListener("click", function() {
+    document.location.replace('./recipes.html');
+})
