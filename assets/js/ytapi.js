@@ -10,13 +10,13 @@ var searchButton = document.querySelector("#recipe-search-btn");
 var searchTerm;
 
 // 
-var videoEl = document.querySelector('.ytRecipe')
+let videoEl = document.querySelector('.ytRecipe')
 
 // api key
 let APIKEY = "AIzaSyBdzi2ryGwNE9idi6ohA5_LhdkrkXmY4Rw";
 
 function createRecipeThumbnail(recipe) {
-    console.log(recipe.label);
+    console.log(recipe.label);d
     var recipeDiv = document.createElement("div");
     var recipeHeader = document.createElement("h3");
     recipeHeader.textContent = recipe.label;
@@ -57,7 +57,7 @@ searchButton.addEventListener("click", function() {
     displayResults(searchURL);
 })
 
-let recipeNoSpace = recipeHeader.textContent
+let recipeNoSpace = searchInput.textContent
 recipeNoSpace = recipeNoSpace.split(' ').join('');
 
 let youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${recipeNoSpace}%20recipe=&key=${APIKEY}`;
