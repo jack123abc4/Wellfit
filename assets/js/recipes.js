@@ -1,15 +1,17 @@
 
-var searchTerm = "toast";
-var fullURL = "https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=03f13ddd&app_key=02579918e4ba389d465eaa6dd2ed2a99"
+// var searchTerm = "fried chicken";
+// var fullURL = "https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=03f13ddd&app_key=02579918e4ba389d465eaa6dd2ed2a99"
 
 var mainDiv = document.querySelector("div");
 var recipeHeader = document.querySelector("h2");
 var recipeParagraph = document.querySelector("p");
 var recipeList = document.querySelector("ul");
 var recipeImage = document.querySelector("img");
-
+var searchInput = document.querySelector("#recipe-search-input");
+var searchButton = document.querySelector("#recipe-search-btn");
 var recipeResults = [];
 
+var searchTerm;
 
 
 function createRecipeThumbnail(recipe) {
@@ -39,7 +41,8 @@ function displayMultipleRecipes(searchResults) {
     }
     console.log(recipeResults);
 }
-function displayResults() {
+function displayResults(fullURL) {
+    wipeResults();
     fetch(fullURL, {
         method: 'GET', //GET is the default.
         })
@@ -57,6 +60,24 @@ function displayResults() {
         });
 }
 
+function wipeResults() {
+    
+    var headers = document.querySelectorAll("h3");
+    var images = document.querySelectorAll("img");
+    console.log("Headers: " + headers);
+    console.log("Images: " + images);
+    for (var i = 0; i < headers.length; i++) {
+        headers[i].remove();
+        images[i].remove();
+        
+    }
+    console.log("Headers: " + headers);
+    console.log("Images: " + images);
+}
+
+function searchTermToURL(searchTerm) {
+    return ("https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=03f13ddd&app_key=02579918e4ba389d465eaa6dd2ed2a99");
+}
 
 document.addEventListener("click", clickListener);
 
@@ -75,4 +96,10 @@ function clickListener(event) {
     }
 }
 
-displayResults();
+searchButton.addEventListener("click", function() {
+    console.log(searchInput.value);
+    searchTerm = searchInput.value;
+    var searchURL = searchTermToURL(searchInput.value);
+    displayResults(searchURL);
+})
+//displayResults();
