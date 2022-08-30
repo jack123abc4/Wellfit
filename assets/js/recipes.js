@@ -1,6 +1,11 @@
 
 // var searchTerm = "fried chicken";
 // var fullURL = "https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=03f13ddd&app_key=02579918e4ba389d465eaa6dd2ed2a99"
+var foodID = "ef193ade";
+var foodKey = "472b382be6ee874666d1ada17c97d073";
+var recipeID = "03f13ddd";
+var recipeKey = "02579918e4ba389d465eaa6dd2ed2a99";
+
 
 var mainDiv = document.querySelector("div");
 var recipeHeader = document.querySelector("h2");
@@ -71,12 +76,13 @@ function wipeResults() {
         images[i].remove();
         
     }
+    images[images.length-1].remove();
     console.log("Headers: " + headers);
     console.log("Images: " + images);
 }
 
 function searchTermToURL(searchTerm) {
-    return ("https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=03f13ddd&app_key=02579918e4ba389d465eaa6dd2ed2a99");
+    return ("https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=" + recipeID + "&app_key=" + recipeKey);
 }
 
 document.addEventListener("click", clickListener);
@@ -92,7 +98,7 @@ function clickListener(event) {
         
         var recipeNum = targetEl.attr("id").split("-")[2];
         var recipe = recipeResults[recipeNum];
-        document.location.replace('./result.html?search=' + searchTerm + "&num=" + recipeNum);
+        document.location.replace('./singleResult.html?search=' + searchTerm + "&num=" + recipeNum);
     }
 }
 
@@ -103,3 +109,14 @@ searchButton.addEventListener("click", function() {
     displayResults(searchURL);
 })
 //displayResults();
+
+
+// {
+//     "ingredients": [
+//         {
+//             "quantity": 0,
+//             "measureURI": "750 gram",
+//             "foodID": "food_abiw5baauresjmb6xpap2bg3otzu"
+//         }
+//     ]
+// }
