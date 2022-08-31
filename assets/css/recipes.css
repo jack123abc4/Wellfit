@@ -102,6 +102,6 @@ top:1px;
 ul {
     columns: 2;
     column-gap: 100px;
-    width: 100%
+    width: 100%;
     row-gap: 50px;
   }
