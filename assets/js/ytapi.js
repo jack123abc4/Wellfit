@@ -36,13 +36,13 @@ $(document).ready(function() {
   $("#duration").change(function () {
     duration = $(this).children("option:selected").val();
   });
-  $("#filter").change(function () {
+  $("#vid-filter").change(function () {
     filter = $(this).children("option:selected").val();
   });
   $("#myForm").submit(function (e) {
     e.preventDefault();
  
-    search = $("#search").val();
+    search = $("#search-bar").val();
  
     var url = `https://www.googleapis.com/youtube/v3/search?key=${YTKEY}
         &part=snippet&q=${search}&maxResults=${maxResults}&order=${filter}&videoDuration=${duration}&type=video`;
@@ -51,28 +51,28 @@ $(document).ready(function() {
       method: "GET",
       url: url,
       beforeSend: function () {
-        $("#btn").attr("disabled", true);
+        $("#search-btn").attr("disabled", true);
         $("#results").empty();
       },
       success: function (data) {
         console.log(data);
-        $("#btn").attr("disabled", false);
+        $("#search-btn").attr("disabled", false);
         displayVideos(data);
       },
     });
   });
  
-  $("#search").change(function () {
-    search = $("#search").val();
+  $("#search-bar").change(function () {
+    search = $("#search-bar").val();
   });
  
   function displayVideos(data) {
   
-    $("#search").val("");
+    $("#search-bar").val("");
  
     var videoData = "";
  
-    $("#table").show();
+    $("#vid-layout").show();
  
     data.items.forEach((item) => {
       videoData = `

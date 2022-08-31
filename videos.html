@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets\css\videos.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Arimo&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/45142689e7.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="./assets\css\style.css">
     <title>Recipes</title>
 </head>
@@ -64,33 +63,57 @@
         </nav>
         </div>
 
-            <div class="content">
+
                 <div class="container has-text-centered">
                     <div class="column is-9">
                         <h1 class="title has-text-white">
                             Watch your Recipes in Action
                         </h1>
-                        <div></div>
-                        <div></div>
+
                         <input id="recipe-search-input" placeholder="Search" autofocus="true" type="text">
+
                         <button id="recipe-search-btn" href="#"><i class="fa-brands fa-searchengin"></i> Search</button>
-                        <div>
-                            <h2></h2>
-                            <p></p>
-                            <ul></ul>
-                            <img src="" alt="">
-                        </div>
-                        <div></div>
+                </form>
+                       
+                     
                         <h3 class="subtitle has-text-centered">
                             <iframe id="ytplayer" type="text/html" width="640" height="360"
                             src=""
                             frameborder="0"></iframe>
                         </h3>
+                        </div> -->
+                        <div class="container">
+                            <form id="myForm" autocomplete="off">
+                                  <input type="text" id="search-bar" placeholder="Topic">
+                             
+                                  <label for="order">Video filter:</label>
+                                  <select id="vid-filter">
+                                    <option>relevance</option>
+                                    <option>viewCount</option>
+                                    <option>rating</option>
+                                  </select>
+                               
+                                    <button id="search-btn">
+                                        Search Videos
+                                    </button>
+                            </form>
+                         
+                            <table id="vid-layout">
+                              <thead>
+                                <tr>
+                                  <th>Title</th>
+                                  <th>Videos</th>
+                                  <th>Channel</th>
+                                </tr>
+                              </thead>
+                              <tbody id="results">
+                              </tbody>
+                            </table>
                         </div>
-                    </div>
+                           </div>
                 </div>
             </div> 
             </section>
-    <script src="assets\js\ytapi.js"></script>
+
 </body>
 </html>

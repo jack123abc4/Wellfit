@@ -10,27 +10,22 @@
  
 <body>
   <div class="container">
- 
-    <h1 class="text-center">
-        Recipes for video
-    </h1>
- 
     <form id="myForm" autocomplete="off">
-          <input type="text" id="search" placeholder="Topic" required>
+          <input type="text" id="s earch-bar" placeholder="Topic">
      
           <label for="order">Video filter:</label>
-          <select id="filter">
+          <select id="vid-filter">
             <option>relevance</option>
             <option>viewCount</option>
             <option>rating</option>
           </select>
        
-            <button id="btn">
+            <button id="search-btn">
                 Search Videos
             </button>
     </form>
  
-    <table id="table">
+    <table id="vid-layout">
       <thead>
         <tr>
           <th>Title</th>
