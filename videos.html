@@ -9,35 +9,33 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Arimo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Arimo&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/45142689e7.js" crossorigin="anonymous"></script>
-
- <!-- <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="../css/landing.css"> -->
+    <link rel="stylesheet" type="text/css" href="../css/landing.css">
     <link rel="stylesheet" href="./assets\css\style.css">
     <title>Recipes</title>
 </head>
-<body>
+<body class="background-image is-info is-fullheight">
 
-    <section class="hero is-info is-fullheight hero-image">
+    <section class="hero">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="navbar-container">
                     <div class="navbar-brand">
-                        <a class="navbar-item" href="#">
+                        <a class="navbar-item" href="./index.html">
                             <img src="assets\images\d76b1d73b837481599b7d7ab219a5fc5.png" id="logo" alt="Logo"> 
                          </a>
-                        <span class="navbar-burger burger" data-target="navbarMenu">
+                        <span class="navbar">
                             <span></span>
                             <span></span>
                             <span></span>
                         </span>
                     </div>
-                    <div id="navbarMenu" class="navbar-menu">
+                    <div class="navbar-menu">
                         <div class="navbar-end">
                             <span class="navbar-item">
-                                <a class="button is-white is-outlined" href="./index.html">
+                                <a class="navbar-button" href="./index.html">
                                     <span class="icon">
                                         <i class="fa fa-home"></i>
                                     </span>
@@ -45,7 +43,7 @@
                                 </a>
                             </span>
                             <span class="navbar-item">
-                                <a class="button is-white is-outlined" href="./recipes.html">
+                                <a class="navbar-button" href="./recipes.html">
                                     <span class="icon">
                                         <i class="fa fa-book"></i>
                                     </span>
@@ -53,7 +51,7 @@
                                 </a>
                             </span>
                             <span class="navbar-item">
-                                <a class="button is-white is-outlined" href="./videos.html">
+                                <a class="navbar-button" href="./videos.html">
                                     <span class="icon">
                                         <i class="fa-solid fa-video"></i>
                                     </span>
@@ -74,8 +72,8 @@
                         </h1>
                         <div></div>
                         <div></div>
-                        <input id="recipe-search-input" type="text">
-                        <button id="recipe-search-btn">Search</button>
+                        <input id="recipe-search-input" placeholder="Search" autofocus="true" type="text">
+                        <button id="recipe-search-btn" href="#"><i class="fa-brands fa-searchengin"></i> Search</button>
                         <div>
                             <h2></h2>
                             <p></p>
@@ -85,7 +83,7 @@
                         <div></div>
                         <h3 class="subtitle has-text-centered">
                             <iframe id="ytplayer" type="text/html" width="640" height="360"
-                            src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
+                            src=""
                             frameborder="0"></iframe>
                         </h3>
                         </div>
@@ -93,6 +91,6 @@
                 </div>
             </div> 
 
-    
+    <script src="assets\js\ytapi.js"></script>
 </body>
 </html>
