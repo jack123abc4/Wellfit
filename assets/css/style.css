@@ -73,8 +73,11 @@ span {
 .title { 
     letter-spacing: 3px;
     font-size: 3.4em;
-
 }
+.navbar-brand {
+    min-height: 5rem;
+}
+
 
 .navbar-button,
 .main-button {
@@ -88,6 +91,7 @@ span {
     color:#166678;
     font-family:Arial;
     font-size:17px;
+    margin-top: 10px;
     padding:7px 25px;
     text-decoration:none;
     text-shadow:0px 1px 0px #e1e2ed;
