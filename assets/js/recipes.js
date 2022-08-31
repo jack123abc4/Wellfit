@@ -37,7 +37,7 @@ function displayMultipleRecipes(searchResults) {
         recipeThumbnail = createRecipeThumbnail(recipe);
         recipeThumbnail.setAttribute("id", "recipe-thumbnail-" + i);
         recipeThumbnail.classList.add("recipe-thumbnail", "search-result");
-        mainDiv.appendChild(recipeThumbnail);
+        recipeList.appendChild(recipeThumbnail);
     }
     console.log(recipeResults);
 }
