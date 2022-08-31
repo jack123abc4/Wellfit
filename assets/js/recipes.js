@@ -92,7 +92,7 @@ function clickListener(event) {
         
         var recipeNum = targetEl.attr("id").split("-")[2];
         var recipe = recipeResults[recipeNum];
-        document.location.replace('./result.html?search=' + searchTerm + "&num=" + recipeNum);
+        document.location.replace('./singleResult.html?search=' + searchTerm + "&num=" + recipeNum);
     }
 }
 
