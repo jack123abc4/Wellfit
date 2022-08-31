@@ -111,7 +111,13 @@ backButton.addEventListener("click", function() {
 })
 
 recipeList.addEventListener("click", function(event){
-    var ingredientNum = event.target.getAttribute("id").split("-")[2];
+    // var ingredientNum = event.target.getAttribute("id").split("-")[2];
+    var ingredientNum = 0;
+    // console.log(recipeObject.ingredients[ingredientNum].text);
+    // console.log(event.target);
+    while (recipeObject.ingredients[ingredientNum].text !== event.target.innerHTML) {
+        ingredientNum++;
+    }
     var ingredientObject = recipeObject.ingredients[ingredientNum];
     console.log(ingredientNum, event.target.textContent);
     console.log(recipeObject.ingredients[ingredientNum]);
