@@ -21,6 +21,10 @@ var backButton = document.createElement("button");
 backButton.setAttribute("id", "back-btn");
 backButton.textContent = "Back";
 
+var viewButton = document.createElement("button");
+viewButton.setAttribute("id", "view-btn");
+viewButton.textContent = "View";
+
 var nutrientsToInclude = ["CA", "CHOCDF", "CHOLE", "FAT", "FE", "FIBTG", "K", "NA", "PROCNT", "SUGAR"];
 var nutrientValuesByIng = [0,0,0,0,0,0,0,0,0,0];
 var caloriesByIng = 0;
@@ -32,7 +36,7 @@ function displaySingleRecipe(params) {
     var searchTerm = splitParams[0].split("=")[1].replace("%20", " ");
     var recipeNum = splitParams[1].split("=")[1];
     console.log(searchTerm,recipeNum);
-    var fullURL = searchTermToURL(searchTerm);
+    var fullURL = recipeSearchToURL(searchTerm);
     getResults(fullURL,recipeNum);
     
     
@@ -63,6 +67,10 @@ function refresh() {
     for (var i = 0; i < recipeLiElements.length; i++) {
         recipeLiElements[i].remove();
     }
+    if (ingredientDiv.querySelector("#input-div")) {
+        ingredientDiv.querySelector("#input-div").remove();
+    }
+
     var ingredientLiElements = ingredientDiv.querySelectorAll("li");
     if (ingredientLiElements) {
         for (var i = 0; i < ingredientLiElements.length; i++) {
@@ -97,6 +105,7 @@ function refresh() {
     
     
     mainDiv.appendChild(backButton);
+    mainDiv.appendChild(viewButton);
 }
 
 async function postIngredient(ingredientObject) {
@@ -147,6 +156,27 @@ function subtractIngredient(ingredientText) {
 
 }
 
+function replaceIngredient(subIngrText,addIngrText) {
+    subtractIngredient(subIngrText);
+}
+
+function displayInputDiv() {
+    var inputDiv = document.createElement("div");
+    inputDiv["id"] = "input-div";
+    ingredientDiv.appendChild(inputDiv);
+
+    var inputField = document.createElement("input");
+    inputField["id"] = "input-field";
+    inputDiv.appendChild(inputField);
+
+    var inputButton = document.createElement("button");
+    inputButton["textContent"] = "Search";
+    inputButton["id"] = "input-btn";
+    inputDiv.appendChild(inputButton);
+
+
+}
+
 async function updateNutrients() {
     // calories, ingredientLines, ingredients, totalNutrients,
     myRecipeObject.calories = 0;
@@ -180,7 +210,7 @@ async function updateNutrients() {
 }
 
 
-function searchTermToURL(searchTerm) {
+function recipeSearchToURL(searchTerm) {
     return ("https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=" + recipeID + "&app_key=" + recipeKey);
 }
 
@@ -190,7 +220,30 @@ backButton.addEventListener("click", function() {
     document.location.replace('./recipes.html');
 })
 
+viewButton.addEventListener("click", function() {
+    refresh();
+    ingredientHeader.textContent = "TOTAL NUTRIENTS";
+
+    var caloriesLi = document.createElement("li");
+    caloriesLi.textContent = "Calories: " + myRecipeObject.calories;
+    ingredientList.appendChild(caloriesLi);
+
+    //console.log(data.totalNutrients.FAT);
+    for (var i = 0; i < nutrientsToInclude.length; i++) {
+        //console.log(nutrientsToInclude[i]);
+        var nutrientLi = document.createElement("li");
+        var nutrientValues = myRecipeObject.totalNutrients[nutrientsToInclude[i]];
+        //console.log(nutrientValues);
+        nutrientLi.textContent = nutrientValues.label + ": " + nutrientValues.quantity + nutrientValues.unit;
+        ingredientList.appendChild(nutrientLi);
+
+        //nutrientValuesByIng[i] += nutrientValues.quantity;
+    }
+
+})
+
 recipeList.addEventListener("click", function(event){
+    refresh();
     // var ingredientNum = event.target.getAttribute("id").split("-")[2];
     var ingredientNum = 0;
     // console.log(myRecipeObject.ingredients[ingredientNum].text);
@@ -199,19 +252,13 @@ recipeList.addEventListener("click", function(event){
         ingredientNum++;
     }
     var ingredientObject = myRecipeObject.ingredients[ingredientNum];
-    console.log(ingredientNum, event.target.textContent);
-    console.log(myRecipeObject.ingredients[ingredientNum]);
+    console.log("ingredient",myRecipeObject.ingredients[ingredientNum]);
 
-    postIngredient(ingredientObject)
+    if (ingredientObject.text !== ingredientHeader.innerHTML) {
+        postIngredient(ingredientObject)
         .then((data) => {
             //console.log(data); // JSON data parsed by `data.json()` call
             ingredientHeader.textContent = ingredientObject.text;
-
-            var listItems = ingredientList.querySelectorAll("li");
-            for (var i = 0; i < listItems.length; i++) {
-                listItems[i].remove();
-            }
-            
 
             var caloriesLi = document.createElement("li");
             caloriesLi.textContent = "Calories: " + data.calories;
@@ -231,10 +278,10 @@ recipeList.addEventListener("click", function(event){
                 //nutrientValuesByIng[i] += nutrientValues.quantity;
             }
             if (!ingredientDiv.querySelector("button")) {
-                var addButton = document.createElement("button");
-                addButton.setAttribute("id", "add-btn");
-                addButton.textContent = "Add";
-                ingredientDiv.appendChild(addButton);
+                var replaceButton = document.createElement("button");
+                replaceButton.setAttribute("id", "replace-btn");
+                replaceButton.textContent = "Replace";
+                ingredientDiv.appendChild(replaceButton);
 
                 var subtractButton = document.createElement("button");
                 subtractButton.setAttribute("id", "sub-btn");
@@ -246,18 +293,22 @@ recipeList.addEventListener("click", function(event){
             return data;
 
         });
+    }
+    
 })
 
 ingredientDiv.addEventListener("click", function(event) {
     //console.log(event.target.tagName);
     if (event.target.tagName === "BUTTON") {
         // console.log(event.target["id"]);
-        if (event.target["id"] === "add-btn") {
-            //
+        if (event.target["id"] === "replace-btn") {
+            displayInputDiv();
         }   
-        else if (event.target["id"] === "sub-btn") {
+        else if (event.target["id"] === "sub-btn") 
             subtractIngredient(ingredientHeader["textContent"]);
         }
+        else if (event.target["id"] === "input-btn") {
+            replaceIngredient(ingredientHeader["textContent"],document.querySelector("#input-field").value);
            
     }
 
