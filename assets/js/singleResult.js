@@ -89,11 +89,13 @@ async function addIngredient(ingredientObject) {
 
     postIngredient(ingredientObject)
         .then((data) => {
-           
+            var ingredientText = data.ingredients[0].parsed[0].quantity + " " + data.ingredients[0].parsed[0].measure + " " + data.ingredients[0].parsed[0].food
             console.log("Added ingr",data);
-            myRecipeObject.ingredients.push(data);
-            myRecipeObject.ingredientLines.push(data.ingredients[0].parsed[0].quantity, data.ingredients[0].parsed[0].measure, data.ingredients[0].parsed[0].food);
+            data.ingredients[0].parsed[0].text = ingredientText;
+            myRecipeObject.ingredients.push(data.ingredients[0].parsed[0]);
+            myRecipeObject.ingredientLines.push(ingredientText);
             updateNutrients();
+            
 
             //console.log(caloriesByIng,nutrientValuesByIng);
 
@@ -259,6 +261,7 @@ async function updateNutrients() {
 
         });
     }
+    refresh();
     
 
 }
@@ -325,8 +328,11 @@ recipeList.addEventListener("click", function(event){
                 //console.log(nutrientsToInclude[i]);
                 var nutrientLi = document.createElement("li");
                 var nutrientValues = data.totalNutrients[nutrientsToInclude[i]];
-                //console.log(nutrientValues);
-                nutrientLi.textContent = nutrientValues.label + ": " + nutrientValues.quantity + nutrientValues.unit;
+                if (nutrientValues) {
+                    //console.log(nutrientValues);
+                    nutrientLi.textContent = nutrientValues.label + ": " + nutrientValues.quantity + nutrientValues.unit;
+                }
+                
                 ingredientList.appendChild(nutrientLi);
 
                 //nutrientValuesByIng[i] += nutrientValues.quantity;
