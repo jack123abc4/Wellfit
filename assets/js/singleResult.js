@@ -61,6 +61,45 @@ async function getResults(fullURL,recipeNum) {
         });
 }
 
+async function parseIngredient(searchTerm, quantity, unit) {
+    fullURL = "https://api.edamam.com/api/food-database/v2/parser?app_id="+ foodID + "&app_key=" + foodKey + "&ingr=" + searchTerm + "&nutrition-type=cooking";
+    fetch(fullURL, {
+        method: 'GET', //GET is the default.
+        })
+        .then(function (response) {
+            // console.log(response);
+            return response.json();
+        })
+        .then(function (data) {
+            
+            data.quantity = quantity;
+            data.measure = unit;
+            data.foodId = data.parsed[0].food.foodId;
+            console.log("Parsed ingredient",data);
+            addIngredient(data,quantity,unit);
+            
+            return data;
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}
+
+async function addIngredient(ingredientObject) {
+
+    postIngredient(ingredientObject)
+        .then((data) => {
+           
+            console.log("Added ingr",data);
+            myRecipeObject.ingredients.push(data);
+            myRecipeObject.ingredientLines.push(data.ingredients[0].parsed[0].quantity, data.ingredients[0].parsed[0].measure, data.ingredients[0].parsed[0].food);
+            updateNutrients();
+
+            //console.log(caloriesByIng,nutrientValuesByIng);
+
+    });
+}
+
 function refresh() {
     // var recipe = data.hits[recipeNum].recipe;
     var recipeLiElements = recipeList.querySelectorAll("li");
@@ -118,6 +157,7 @@ async function postIngredient(ingredientObject) {
           }
         ]
       }
+    console.log("DATA POSTED", data);
     // Default options are marked with *
     const response = await fetch(foodURL, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -134,7 +174,15 @@ async function postIngredient(ingredientObject) {
     });
     return response.json(); // parses JSON response into native JavaScript objects
 }
-  
+
+function getIngredientByText(ingredientText) {
+    for (var i = 0; i < myRecipeObject.ingredients.length; i++) {
+        if (myRecipeObject.ingredients[i].text === ingredientText) {
+            return myRecipeObject.ingredients[i];
+        }
+    }
+}
+
 function subtractIngredient(ingredientText) { 
     var newIngredients = [];
     var newIngredientLines = [];
@@ -157,22 +205,28 @@ function subtractIngredient(ingredientText) {
 }
 
 function replaceIngredient(subIngrText,addIngrText) {
+    var quantity = getIngredientByText(subIngrText).quantity;
+    var unit = getIngredientByText(subIngrText).measure;
     subtractIngredient(subIngrText);
+    parseIngredient(addIngrText,quantity,unit);
 }
 
 function displayInputDiv() {
-    var inputDiv = document.createElement("div");
-    inputDiv["id"] = "input-div";
-    ingredientDiv.appendChild(inputDiv);
+    if (!ingredientDiv.querySelector("#input-div")) {
+        var inputDiv = document.createElement("div");
+        inputDiv["id"] = "input-div";
+        ingredientDiv.appendChild(inputDiv);
 
-    var inputField = document.createElement("input");
-    inputField["id"] = "input-field";
-    inputDiv.appendChild(inputField);
+        var inputField = document.createElement("input");
+        inputField["id"] = "input-field";
+        inputDiv.appendChild(inputField);
 
-    var inputButton = document.createElement("button");
-    inputButton["textContent"] = "Search";
-    inputButton["id"] = "input-btn";
-    inputDiv.appendChild(inputButton);
+        var inputButton = document.createElement("button");
+        inputButton["textContent"] = "Search";
+        inputButton["id"] = "input-btn";
+        inputDiv.appendChild(inputButton);
+    }   
+    
 
 
 }
@@ -192,8 +246,8 @@ async function updateNutrients() {
             // console.log("Data", data);
             myRecipeObject.calories += data.calories;
             for (var i = 0; i < nutrientKeys.length; i++) {
-                console.log(nutrientKeys[i]);
-                console.log("single ingredient nutrient value", data.totalNutrients[nutrientKeys[i]]);
+                //console.log(nutrientKeys[i]);
+                //console.log("single ingredient nutrient value", data.totalNutrients[nutrientKeys[i]]);
                 if (data.totalNutrients[nutrientKeys[i]]){
                     myRecipeObject.totalNutrients[nutrientKeys[i]].quantity += data.totalNutrients[nutrientKeys[i]].quantity;
                 }
@@ -304,11 +358,12 @@ ingredientDiv.addEventListener("click", function(event) {
         if (event.target["id"] === "replace-btn") {
             displayInputDiv();
         }   
-        else if (event.target["id"] === "sub-btn") 
+        else if (event.target["id"] === "sub-btn") {
             subtractIngredient(ingredientHeader["textContent"]);
         }
         else if (event.target["id"] === "input-btn") {
             replaceIngredient(ingredientHeader["textContent"],document.querySelector("#input-field").value);
+        }
            
     }
 
