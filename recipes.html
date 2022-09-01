@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WellFit</title>
+<<<<<<< HEAD
+=======
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/45142689e7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href=".\assets\css\style.css">
+>>>>>>> b520b8d71bb277720e385362289953f083e1a6ea
 </head>
 
 
@@ -39,37 +46,36 @@
 			</ul>
 		</div>
 	</nav>
-        </section>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
 
-                            <h2></h2>
-                            <p></p>
-                            <ul class="has-text-white"></ul>
-                            <img src="" alt="">
-                        </div> -->
+        <div class="hero-body">
+            <div class="container flex items-center justify-center h-screen">
+                <div class="column is-12 is-offset-3">
+                    <h1 class="title text-white">
+                        Search for a Recipe 
+                    </h1>
+                    
+                    <div class="box">
+                        <div class="field">
+                            <p class="control is-expanded">
 
-                        <ul></ul>
-                        <!-- <div class="flex justify-center">
-                            <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
-                              <img class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg" src="" alt="" />
-                              <div class="p-6 flex flex-col justify-start" id="center-div">
-                                <h2 class="text-gray-900 text-xl font-medium mb-2"></h2>
-                                <p class="text-gray-700 text-base mb-4"></p>
-                              </div>
-                            </div>
-                          </div> -->
-
-                          
-
-                            </div>
-
+                                <form>   
+                                    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+                                    <div class="relative">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                        </div>
+                                        <input type="search" id="recipe-search-input" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required>
+                                        <button type="button" id="recipe-search-btn" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                                    </div>
+                                </form>
+                            </p>
                         </div>
-                        
                     </div>
+                    <div id="card-div">
+                        <ul id="recipe-list"></ul>
+                    </div>
+        </div>
+                                
                 </div>
             </div>
 
