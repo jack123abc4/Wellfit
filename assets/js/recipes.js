@@ -102,4 +102,5 @@ searchButton.addEventListener("click", function() {
     var searchURL = searchTermToURL(searchInput.value);
     displayResults(searchURL);
 })
+
 //displayResults();
