@@ -40,12 +40,9 @@ body {
 
 
 .content {
-    text-align: center;
+    justify-content: center;
     position: absolute;
     display: flex;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     color: white;
 }
 
@@ -55,9 +52,12 @@ body {
     display: flex;
 }
 
-.navbar-item > img { 
-    max-height: 12rem; 
-    margin-top: 5px;
+.navbar-item > img {
+    height: 160px;
+    margin: 10px;
+    border-radius: 50px;
+    max-height: 15rem; 
+    margin-top: 7px;
 }
 
 .navbar-button {

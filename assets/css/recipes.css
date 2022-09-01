@@ -1,4 +1,3 @@
-/* CSS file */
 * {
     padding:0;
     margin:0;
@@ -12,11 +11,10 @@ body, html {
 }
 
 body {
-    font-weight: 400;
+    font-weight: 200;
+    font-size: 2.5em;
     line-height: 1.5;
-    font-size: 1.4em;
 }
-
 
 .hero {
     align-items: stretch;
@@ -25,45 +23,41 @@ body {
     justify-content: space-between;
 }
 
-  .background-image {
-
+.background-image {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/free-photo/healthy-life-sport-concept-sneakers-with-apples-towel-bottle-water-wooden-background-copy-space_1220-1474.jpg?w=1800&t=st=1661792367~exp=1661792967~hmac=b4c659e78a3194557b1fc44b536f3d4be08c2f131d4fb75a5000ff868426746f");
-    min-height: 100vh;
-    min-width: 100vw;
+    height: 100vh;
     background-position: center;
     background-repeat: repeat-y;
     background-size: cover;
     position: relative;
-    background-attachment: scroll;
   }
 
 .title { 
     letter-spacing: 3px;
     font-size: 3.4em;
+
 }
 
-.navbar {
-    align-items: stretch;
+
+.content {
+    text-align: center;
+    position: absolute;
     display: flex;
-    min-height: 3.25rem;
-    width: 100%;
+    color: white;
 }
 
-.navbar-brand {
-    min-height: 5rem;
+.navbar-end {
+    display: table-cell;
+    float: right;
+    display: flex;
 }
 
-#logo {
+.navbar-item > img {
     height: 160px;
     margin: 10px;
     border-radius: 50px;
     max-height: 15rem; 
     margin-top: 7px;
-}
-
-.navbar-item {
-    display: block;
-    position: relative;
 }
 
 .navbar-button {
@@ -76,7 +70,6 @@ display:inline-block;
 cursor:pointer;
 color:#166678;
 font-size:17px;
-margin-top: 10px;
 padding:7px 25px;
 text-decoration:none;
 text-shadow:0px 1px 0px #e1e2ed;
@@ -89,6 +82,7 @@ background-color:#bab1ba;
 position:relative;
 top:1px;
 }
+
 
 #recipe-search-btn {
     padding: 10px;
@@ -116,8 +110,3 @@ ul {
     row-gap: 50px;
   }
 
-  @media only screen and (max-device-width: 576px) {
-    .parallax {
-      background-attachment: scroll;
-    }
-  }

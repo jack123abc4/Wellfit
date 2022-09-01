@@ -16,6 +16,10 @@ body {
     font-size: 1.4em;
 }
 
+h1 {
+    color: white;
+}
+
 
 .hero {
     align-items: stretch;
@@ -42,6 +46,7 @@ body {
 
 .navbar-end {
     float: right;
+    display: inline-block;
 }
 
 #logo {
