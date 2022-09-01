@@ -17,29 +17,16 @@ body {
     line-height: 1.5;
 }
 
-.navbar-end {
-    display: table-cell;
-    float: right;
-    display: flex;
-}
-
 #logo {
     height: 150px;
-    float: left;
     margin: 10px;
     border-radius: 50px;
-}
-
-span {
-    font-style: inherit;
-    font-weight: inherit;
+    max-height: 12rem; 
+    margin-top: 5px;
 }
 
 .navbar-item {
-    color: #4a4a4a;
     display: block;
-    line-height: 1.5;
-    padding: 0.5rem 0.75rem;
     position: relative;
 }
 
@@ -73,9 +60,6 @@ span {
 .title { 
     letter-spacing: 3px;
     font-size: 3.4em;
-}
-.navbar-brand {
-    min-height: 5rem;
 }
 
 
