@@ -1,79 +1,64 @@
-// ytapi.js
-     
-//         var recipeNum = targetEl.attr("id").split("-")[2];
-//         var recipe = recipeResults[recipeNum];
-//         document.location.replace('./result.html?search=' + searchTerm + "&num=" + recipeNum);
-//     }
-// }
+var YTKEY = "AIzaSyBY1dL8Q9nkhqy5NfIC-4sruEtjLYyoEHU";
+var search = "";
+var duration = "any";
+var filter = "relevance";
+var maxResults = 3
 
-// searchButton.addEventListener("click", function() {
-//     console.log(searchInput.value);
-//     searchTerm = searchInput.value;
-//     var searchURL = searchTermToURL(searchInput.value);
-//     displayResults(searchURL);
-// })
 
-// let recipeNoSpace = searchInput.textContent
-// recipeNoSpace = recipeNoSpace.split(' ').join('');
+// ES6 - Async/Await
+// Module/Reusable function
+async function getYTVideo(search) {
+  var url = `https://www.googleapis.com/youtube/v3/search?key=${YTKEY}
+        &part=snippet&q=${search}&maxResults=${maxResults}&order=${filter}&videoDuration=${duration}&type=video`;
+  try {
 
-// fetch(youtubeUrl, {})
-// .then(function (response) {
-//     return response.json();
-// })
+    var result = await $.ajax({
+      method: "GET",
+      url
+    });
 
-// .then(function (data) {
-//     videoEl.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.items[0].id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-// });
+    return result;
+  } catch (error) {
+    console.log("Error fetching for Youtube Videos");
+  }
+}
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-  var YTKEY = "AIzaSyBY1dL8Q9nkhqy5NfIC-4sruEtjLYyoEHU";
-  var search = "";
-  var duration = "any";
-  var filter = "relevance";
-  var maxResults=3
- 
+
   $("#duration").change(function () {
     duration = $(this).children("option:selected").val();
   });
   $("#vid-filter").change(function () {
     filter = $(this).children("option:selected").val();
   });
-  $("#myForm").submit(function (e) {
+  $("#myForm").submit(async function (e) {
     e.preventDefault();
- 
+
     search = $("#search-bar").val();
- 
-    var url = `https://www.googleapis.com/youtube/v3/search?key=${YTKEY}
-        &part=snippet&q=${search}&maxResults=${maxResults}&order=${filter}&videoDuration=${duration}&type=video`;
- 
-    $.ajax({
-      method: "GET",
-      url: url,
-      beforeSend: function () {
-        $("#search-btn").attr("disabled", true);
-        $("#results").empty();
-      },
-      success: function (data) {
-        console.log(data);
-        $("#search-btn").attr("disabled", false);
-        displayVideos(data);
-      },
-    });
+
+    $("#search-btn").attr("disabled", true);
+    $("#results").empty();
+
+    var videos = await getYTVideo(search);
+
+    console.log(videos);
+    $("#search-btn").attr("disabled", false);
+    displayVideos(videos);
   });
- 
+
   $("#search-bar").change(function () {
     search = $("#search-bar").val();
   });
- 
+
   function displayVideos(data) {
-  
+
     $("#search-bar").val("");
- 
+
     var videoData = "";
- 
+
     $("#vid-layout").show();
- 
+
     data.items.forEach((item) => {
       videoData = `
                     <tr>
@@ -88,7 +73,7 @@ $(document).ready(function() {
                     </td>
                     </tr
                     `;
- 
+
       $("#results").append(videoData);
     });
   }

@@ -35,28 +35,57 @@ function displaySingleRecipe(params) {
     var splitParams = params.split("&");
     var searchTerm = splitParams[0].split("=")[1].replace("%20", " ");
     var recipeNum = splitParams[1].split("=")[1];
-    console.log(searchTerm,recipeNum);
+    console.log(searchTerm, recipeNum);
     var fullURL = recipeSearchToURL(searchTerm);
-    getResults(fullURL,recipeNum);
-    
-    
+    getResults(fullURL, recipeNum, searchTerm);
+
+
 }
 
-async function getResults(fullURL,recipeNum) {
+function addVideos(data) {
+
+    data.items.forEach((item) => {
+        videoData = `
+                      <tr>
+                      <td>
+                      <a target="_blank" href="https://www.youtube.com/watch?v=${item.id.videoId}">
+                      ${item.snippet.title}</td>
+                      <td>
+                      <iframe width="560" height="315" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </td>
+                      <td>
+                      <a target="_blank" href="https://www.youtube.com/channel/${item.snippet.channelId}">${item.snippet.channelTitle}</a>
+                      </td>
+                      </tr
+                      `;
+
+        // TODO: FInd an element to display the videos
+        $("#vid-layout").append(videoData);
+    });
+}
+
+async function getResults(fullURL, recipeNum, searchTerm) {
     fetch(fullURL, {
         method: 'GET', //GET is the default.
-        })
+    })
         .then(function (response) {
             // console.log(response);
             return response.json();
         })
-        .then(function (data) {
+        .then(async function (data) {
             console.log(data);
             myRecipeObject = data.hits[recipeNum].recipe;
             refresh();
+
+            var videos = await getYTVideo(myRecipeObject.label);
+            addVideos(videos);
+
+            console.log("YT Videos: ", videos);
+
+            // TODO: Fetch for video with the search term
             return data;
         })
-        .catch(function(error) {
+        .catch(function (error) {
             console.log(error);
         });
 }
