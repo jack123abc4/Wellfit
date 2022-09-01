@@ -54,11 +54,10 @@ body {
     float: right;
     display: flex;
 }
-#logo {
-        height: 150px;
-        float: left;
-        margin: 10px;
-        border-radius: 50px;
+
+.navbar-item > img { 
+    max-height: 12rem; 
+    margin-top: 5px;
 }
 
 .navbar-button {
