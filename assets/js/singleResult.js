@@ -25,6 +25,8 @@ var viewButton = document.createElement("button");
 viewButton.setAttribute("id", "view-btn");
 viewButton.textContent = "View";
 
+var saveButton = document.querySelector("#save-btn")
+
 var nutrientsToInclude = ["CA", "CHOCDF", "CHOLE", "FAT", "FE", "FIBTG", "K", "NA", "PROCNT", "SUGAR"];
 var nutrientValuesByIng = [0,0,0,0,0,0,0,0,0,0];
 var caloriesByIng = 0;
@@ -300,7 +302,7 @@ function recipeSearchToURL(searchTerm) {
     return ("https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=" + recipeID + "&app_key=" + recipeKey);
 }
 
-displaySingleRecipe(window.location.search);
+
 
 backButton.addEventListener("click", function() {
     document.location.replace('./recipes.html');
@@ -404,3 +406,45 @@ ingredientDiv.addEventListener("click", function(event) {
     }
 
 })
+
+function flipSaveButton() {
+    if (saveButton.state === "unsaved") {
+        saveButton.state = "saved";
+        saveButton.innerHTML = "Unsave"
+    }
+    else {
+        saveButton.state = "unsaved";
+        saveButton.innerHTML = "Save";
+    }
+}
+
+saveButton.addEventListener("click", function(){
+    if (localStorage.getItem(window.location.search)) {
+        console.log("Unsaved!")
+        localStorage.removeItem(window.location.search);
+    }
+    else {
+        console.log("Saved!");
+        localStorage.setItem(window.location.search,"saved");
+    }
+    flipSaveButton();
+
+
+})
+
+function init() {
+    displaySingleRecipe(window.location.search);
+    saveButton.state = "unsaved"
+    if (localStorage.getItem(window.location.search)) {
+        console.log("Recipe is saved.");
+        saveButton.state = "saved";
+        saveButton.innerHTML = "Unsave"
+    }
+    else {
+        console.log("Recipe is unsaved.");
+        saveButton.state = "unsaved";
+        saveButton.innerHTML = "Save";
+    }
+}
+
+init();
