@@ -2,10 +2,10 @@
 // var searchTerm = "fried chicken";
 // var fullURL = "https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=03f13ddd&app_key=02579918e4ba389d465eaa6dd2ed2a99"
 
-var mainDiv = document.querySelector("div");
+// var mainDiv = document.querySelector("#card-div");
 var recipeHeader = document.querySelector("h2");
 var recipeParagraph = document.querySelector("p");
-var recipeList = document.querySelector("ul");
+var recipeList = document.querySelector("#recipe-list");
 var recipeImage = document.querySelector("img");
 var searchInput = document.querySelector("#recipe-search-input");
 var searchButton = document.querySelector("#recipe-search-btn");
