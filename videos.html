@@ -13,13 +13,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Arimo&display=swap" rel="stylesheet"> -->
     <script src="https://kit.fontawesome.com/45142689e7.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/45142689e7.js" crossorigin="anonymous"></script> 
-    <link rel="stylesheet" href="./assets\css\style.css">
+    <link rel="stylesheet" href="./assets/css/videos.css">
     <title>Recipes</title>
+</head>
+
+<body> 
+    <section class="hero background-image is-fullheight">
+
 </head>
 <body>
     <div class="background-image is-info is-fullheight is-responsive">
     <section class="hero">
+    
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
@@ -134,44 +139,52 @@
             </nav>
         </div>
 
-        <div class="container">
-            <form id="myForm" autocomplete="off">
-                  <input type="text" id="search-bar" placeholder="Topic">
-             
-                  <label for="order">Video filter:</label>
-                  <select id="vid-filter">
-                    <option>relevance</option>
-                    <option>viewCount</option>
-                    <option>rating</option>
-                  </select>
-               
-                    <button id="search-btn">
-                        Search Videos
-                    </button>
-            </form>
-         
-            <table id="vid-layout">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Videos</th>
-                  <th>Channel</th>
-                </tr>
-              </thead>
-              <tbody id="results">
-              </tbody>
-            </table>
-        </div>
-
-    </section>
-</div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-12 is-offset-3">
+                    <h1 class="title">
+                        Video Recipes 
+                    </h1>
+                    
+                    <div class="box">
+                        <div class="field is-4">
+                            <div class="container has-text-centered"></div>
+                            <p class="control is-expanded">
+                              <form id="vidForm" autocomplete="off">
+                                <input type="text" id="search-bar" placeholder="Topic">
 
 
-          
+                                <button id="search-btn">Search Videos</button>
+    
+                                <label for="order">Video filter:</label>
+                                <select id="vid-filter">
+                                  <option>relevance</option>
+                                  <option>viewCount</option>
+                                  <option>rating</option>
+                                </select>
+                             
+                          </form>
+                          </div>
 
-        
- 
-           
+
+
+
+                          <table id="vid-layout">
+                            <thead>
+                              <tr>
+                                <th>Title</th>
+                                <th>Videos</th>
+                                <th>Channel</th>
+                              </tr>
+                            </thead>
+                            <tbody id="results">
+                            </tbody>
+                          </table>
+
+                        </div>
+                     </div>
+                   </div>
+                </div>
            
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

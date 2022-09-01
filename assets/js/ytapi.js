@@ -1,9 +1,11 @@
+// ytapi.sj
+
+// variables
 var YTKEY = "AIzaSyBY1dL8Q9nkhqy5NfIC-4sruEtjLYyoEHU";
 var search = "";
 var duration = "any";
 var filter = "relevance";
-var maxResults = 3
-
+var maxResults = 3;
 
 // ES6 - Async/Await
 // Module/Reusable function
@@ -23,16 +25,15 @@ async function getYTVideo(search) {
   }
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
 
-
-  $("#duration").change(function () {
+  $("#duration").change(function() {
     duration = $(this).children("option:selected").val();
   });
-  $("#vid-filter").change(function () {
+  $("#vid-filter").change(function() {
     filter = $(this).children("option:selected").val();
   });
-  $("#myForm").submit(async function (e) {
+  $("#vidForm").submit(async function(e) {
     e.preventDefault();
 
     search = $("#search-bar").val();
@@ -47,7 +48,7 @@ $(document).ready(function () {
     displayVideos(videos);
   });
 
-  $("#search-bar").change(function () {
+  $("#search-bar").change(function() {
     search = $("#search-bar").val();
   });
 
@@ -73,7 +74,6 @@ $(document).ready(function () {
                     </td>
                     </tr
                     `;
-
       $("#results").append(videoData);
     });
   }
