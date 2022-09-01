@@ -4,75 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Arimo&display=swap" rel="stylesheet"> 
     <script src="https://kit.fontawesome.com/45142689e7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./assets/css/videos.css">
+    <link rel="stylesheet" href=".\assets\css\style.css">
     <title>Recipes</title>
 </head>
 
-<body> 
-    <section class="hero background-image is-fullheight">
+<body class="bg-hero bg-no-repeat bg-cover bg-center bg-fixed font-sans leading-normal tracking-normal" style="background-image: url('https://img.freepik.com/free-photo/healthy-life-sport-concept-sneakers-with-apples-towel-bottle-water-wooden-background-copy-space_1220-1474.jpg?w=1800&t=st=1661792367~exp=1661792967~hmac=b4c659e78a3194557b1fc44b536f3d4be08c2f131d4fb75a5000ff868426746f');">
 
-</head>
-<body>
-    <div class="background-image is-info is-fullheight is-responsive">
-    <section class="hero">
-    
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                  <div class="navbar-brand">
-                    <figure class="is-rounded ">
-                    <a class="navbar-item" href="./index.html">
-                      <img src="assets\images\wellfit.png" id="logo" alt="Logo">
-                    </a>
-                </figure>
-                    <span class="navbar-burger burger" data-target="navbarMenu">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </span>
-                  </div>
-                  <div id="navbarMenu" class="navbar-menu">
-                    <div class="navbar-end mt-*4">
-                        <span class="navbar-item is-active">
-                            <a class="navbar-button" href="./index.html">
-                                <span class="icon">
-                                    <i class="fa fa-home"></i>
-                                </span>
-                                <span>Home</span>
-                            </a>
-                        </span>
-                        <span class="navbar-item">
-                            <a class="navbar-button" href="./recipes.html">
-                                <span class="icon">
-                                    <i class="fa fa-book"></i>
-                                </span>
-                                <span>Recipes</span>
-                            </a>
-                        </span>
-                        <span class="navbar-item">
-                            <a class="navbar-button" href="./videos.html">
-                                <span class="icon">
-                                    <i class="fa-solid fa-video"></i>
-                                </span>
-                                <span>Videos</span>
-                            </a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        </div>
+	<nav class="flex items-center justify-between flex-wrap p-6 fixed w-full z-10 top-0">
+		<div class="flex items-center flex-shrink-0 text-white mr-6">
+				<a class="navbar-item" href="./index.html">
+                    <img src="assets\images\wellfit.png" class="rounded-full" id="logo" alt="Logo">
+                  </a>
+		</div>
+		<div class="block lg:hidden">
+			<button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white">
+				<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Home</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+			</button>
+		</div>
+
+		<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
+			<ul class="list-reset lg:flex justify-end flex-1 items-center">
+				<li class="mr-3">
+					<a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./index.html"><i class="fa-solid fa-house"></i> Home</a>
+				</li>
+				<li class="mr-3">
+					<a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./recipes.html"><i class="fa-solid fa-book"></i> Recipes</a>
+				</li>
+				<li class="mr-3">
+					<a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./videos.html"><i class="fa-solid fa-book"></i> Videos</a>
+				</li>
+				<li class="mr-3">
+					<a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./favorites.html"><i class="fa-solid fa-heart"></i> Favorites</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
  
         <div class="hero-body">
-            <div class="container has-text-centered">
+            <div class="container flex items-center justify-center h-screen">
                 <div class="column is-12 is-offset-3">
                     <h1 class="title">
                         Video Recipes 
@@ -82,11 +57,22 @@
                         <div class="field">
                             <div class="container has-text-centered"></div>
                             <p class="control is-expanded">
-                              <form id="vidForm" autocomplete="off">
+
+                                <form>   
+                                    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+                                    <div class="relative">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                        </div>
+                                        <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required>
+                                        <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                                    </div>
+                                </form>
+                              <!-- <form id="vidForm" autocomplete="off">
                                 <input type="text" id="search-bar" placeholder="Topic">
 
 
-                                <button id="search-btn">Search Videos</button>
+                                <button id="search-btn">Search Videos</button> -->
     
                                 <label for="order">Video filter:</label>
                                 <select id="vid-filter">
@@ -94,8 +80,6 @@
                                   <option>viewCount</option>
                                   <option>rating</option>
                                 </select>
-                             
-                          </form>
                           </div>
 
                           <table id="vid-layout">
