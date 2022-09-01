@@ -14,7 +14,7 @@ body, html {
 body {
     font-weight: 400;
     line-height: 1.5;
-    font-size: 1.4em
+    font-size: 1.4em;
 }
 
 
@@ -25,14 +25,23 @@ body {
     justify-content: space-between;
 }
 
-.background-image {
+/* .parallax {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/free-photo/healthy-life-sport-concept-sneakers-with-apples-towel-bottle-water-wooden-background-copy-space_1220-1474.jpg?w=1800&t=st=1661792367~exp=1661792967~hmac=b4c659e78a3194557b1fc44b536f3d4be08c2f131d4fb75a5000ff868426746f");
     height: 100vh;
+    background-attachment: fixed;
     background-position: center;
-    background-repeat: repeat-y;
+    background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
-    background-attachment: scroll;
+  } */
+
+  .background-image {
+
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/free-photo/healthy-life-sport-concept-sneakers-with-apples-towel-bottle-water-wooden-background-copy-space_1220-1474.jpg?w=1800&t=st=1661792367~exp=1661792967~hmac=b4c659e78a3194557b1fc44b536f3d4be08c2f131d4fb75a5000ff868426746f");
+        height: 100%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
   }
 
 .title { 
@@ -112,4 +121,10 @@ ul {
     column-gap: 100px;
     width: 100%;
     row-gap: 50px;
+  }
+
+  @media only screen and (max-device-width: 576px) {
+    .parallax {
+      background-attachment: scroll;
+    }
   }
