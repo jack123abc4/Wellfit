@@ -3,7 +3,7 @@ var foodKey = "472b382be6ee874666d1ada17c97d073";
 var foodURL = "https://api.edamam.com/api/food-database/v2/nutrients?app_id=" + foodID + "&app_key=" + foodKey;
 var recipeID = "03f13ddd";
 var recipeKey = "02579918e4ba389d465eaa6dd2ed2a99";
-
+var maxResults = 1;
 
 var mainDiv = document.querySelector("#recipe");
 var recipeHeader = mainDiv.querySelector("h2");
