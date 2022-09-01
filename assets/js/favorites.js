@@ -1,3 +1,8 @@
+$('.lists a').click(function(e){
+	var favs = $(this).parent().html();
+	alert(favs);
+  $(this).text('Remove');
+});
 var mainDiv = document.querySelector("#main-div");
 var recipeHeader = mainDiv.querySelector("h2");
 var recipeParagraph = mainDiv.querySelector("p");

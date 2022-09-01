@@ -16,26 +16,22 @@ body {
     font-weight: 400;
     line-height: 1.5;
 }
-
+/* 
 #logo {
     height: 150px;
     margin: 10px;
     border-radius: 50px;
     max-height: 12rem; 
     margin-top: 5px;
-}
+} */
 
 .navbar-item {
     display: block;
     position: relative;
 }
 
-.hero {
-    align-items: stretch;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+
+
 
 .background-image {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/free-photo/healthy-life-sport-concept-sneakers-with-apples-towel-bottle-water-wooden-background-copy-space_1220-1474.jpg?w=1800&t=st=1661792367~exp=1661792967~hmac=b4c659e78a3194557b1fc44b536f3d4be08c2f131d4fb75a5000ff868426746f");
@@ -61,36 +57,4 @@ body {
     letter-spacing: 3px;
     font-size: 3.4em;
 }
-
-
-.navbar-button,
-.main-button {
-    box-shadow: 3px 4px 0px 0px #899599;
-    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
-    background-color:#ededed;
-    border-radius:15px;
-    border:1px solid #d6bcd6;
-    display:inline-block;
-    cursor:pointer;
-    color:#166678;
-    font-family:Arial;
-    font-size:17px;
-    margin-top: 10px;
-    padding:7px 25px;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #e1e2ed;
-    }
-    .navbar-button:hover {
-    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
-    background-color:#bab1ba;
-    }
-    .navbar-button:active {
-    position:relative;
-    top:1px;
-    }
-
-    .main-button {
-        margin: 15px;
-    }
-
    

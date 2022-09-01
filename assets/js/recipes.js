@@ -13,8 +13,24 @@ var recipeResults = [];
 
 var searchTerm;
 
+function createcard() {
+    var outerDiv = document.createElement('div')
+    outerDiv.classList.add('flex', 'justify-center',)
+    var innerDiv = document.createElement('div')
+    innerDiv.classList.add('flex', 'flex-col', 'md:flex-row', 'md:max-w-xl', 'rounded-lg', 'bg-white', 'shadow-lg',)
+    outerDiv.appendChild(innerDiv)
+    var imgEl = document.createElement('img')
+    imgEl.setAttribute('class','flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg')
+    innerDiv.appendChild(imgEl)
+    var centerDiv = document.createElement('div')
+    centerDiv.setAttribute('class','p-6 flex flex-col justify-start')
+    centerDiv.setAttribute('id','center-div')
+    innerDiv.appendChild(centerDiv)
+    return outerDiv;
+};
 
 function createRecipeThumbnail(recipe) {
+    var card = createcard();
     console.log(recipe.label);
     var recipeDiv = document.createElement("div");
     var recipeHeader = document.createElement("h3");
@@ -25,8 +41,9 @@ function createRecipeThumbnail(recipe) {
     recipeImage.classList.add("recipe-thumbnail-img", "search-result");
     recipeDiv.appendChild(recipeHeader);
     recipeDiv.appendChild(recipeImage);
+    card.querySelector('#center-div').appendChild(recipeDiv)
+    return card;
     return recipeDiv;
-
 }
 
 function displayMultipleRecipes(searchResults) {
@@ -103,4 +120,8 @@ searchButton.addEventListener("click", function() {
     displayResults(searchURL);
 })
 
+let pageHeight = window.innerHeight;
+window.scrollBy(0, pageHeight);
+
+scrollBy();
 //displayResults();
