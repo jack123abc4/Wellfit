@@ -328,12 +328,13 @@ recipeList.addEventListener("click", function(event){
                 //console.log(nutrientsToInclude[i]);
                 var nutrientLi = document.createElement("li");
                 var nutrientValues = data.totalNutrients[nutrientsToInclude[i]];
-                if (nutrientValues) {
+                if (nutrientValues && nutrientValues.quantity > 0) {
                     //console.log(nutrientValues);
                     nutrientLi.textContent = nutrientValues.label + ": " + nutrientValues.quantity + nutrientValues.unit;
+                    ingredientList.appendChild(nutrientLi);
                 }
                 
-                ingredientList.appendChild(nutrientLi);
+                
 
                 //nutrientValuesByIng[i] += nutrientValues.quantity;
             }
