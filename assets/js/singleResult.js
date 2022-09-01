@@ -6,9 +6,9 @@ var recipeKey = "02579918e4ba389d465eaa6dd2ed2a99";
 var maxResults = 1;
 
 var mainDiv = document.querySelector("#recipe");
-var recipeHeader = mainDiv.querySelector("h2");
+var recipeHeader = mainDiv.querySelector("#ingredients-header");
 var recipeParagraph = mainDiv.querySelector("p");
-var recipeList = mainDiv.querySelector("ul");
+var recipeList = mainDiv.querySelector("#ingredients-list");
 var recipeImage = mainDiv.querySelector("img");
 var myRecipeObject;
 
@@ -24,6 +24,10 @@ backButton.textContent = "Back";
 var viewButton = document.createElement("button");
 viewButton.setAttribute("id", "view-btn");
 viewButton.textContent = "View";
+
+var modalViewButton = document.querySelector("#modal-nutrition-btn");
+var modalHeader = document.querySelector("#modal-header");
+var modalList = document.querySelector("#modal-list");
 
 var saveButton = document.querySelector("#save-btn")
 
@@ -157,6 +161,12 @@ function refresh() {
             ingredientBtnElements[i].remove();
         }
     }
+    var modalLiElements = modalList.querySelectorAll("li");
+    if (modalLiElements) {
+        for (var i = 0; i < modalLiElements.length; i++) {
+            modalLiElements[i].remove();
+        }
+    }
     ingredientHeader.textContent = "";
     
     
@@ -176,8 +186,8 @@ function refresh() {
     }
     
     
-    mainDiv.appendChild(backButton);
-    mainDiv.appendChild(viewButton);
+    //mainDiv.appendChild(backButton);
+    //mainDiv.appendChild(viewButton);
 }
 
 async function postIngredient(ingredientObject) {
@@ -313,7 +323,7 @@ viewButton.addEventListener("click", function() {
     ingredientHeader.textContent = "TOTAL NUTRIENTS";
 
     var caloriesLi = document.createElement("li");
-    caloriesLi.textContent = "Calories: " + myRecipeObject.calories;
+    caloriesLi.textContent = "Calories: " + Math.round(myRecipeObject.calories);
     ingredientList.appendChild(caloriesLi);
 
     //console.log(data.totalNutrients.FAT);
@@ -322,7 +332,7 @@ viewButton.addEventListener("click", function() {
         var nutrientLi = document.createElement("li");
         var nutrientValues = myRecipeObject.totalNutrients[nutrientsToInclude[i]];
         //console.log(nutrientValues);
-        nutrientLi.textContent = nutrientValues.label + ": " + nutrientValues.quantity + nutrientValues.unit;
+        nutrientLi.textContent = nutrientValues.label + ": " + Math.round(nutrientValues.quantity) + nutrientValues.unit;
         ingredientList.appendChild(nutrientLi);
 
         //nutrientValuesByIng[i] += nutrientValues.quantity;
@@ -330,8 +340,30 @@ viewButton.addEventListener("click", function() {
 
 })
 
+modalViewButton.addEventListener("click", function() {
+    refresh();
+    //modalHeader.textContent = "TOTAL NUTRIENTS";
+
+    var caloriesLi = document.createElement("li");
+    caloriesLi.textContent = "Calories: " + Math.round(myRecipeObject.calories);
+    modalList.appendChild(caloriesLi);
+
+    //console.log(data.totalNutrients.FAT);
+    for (var i = 0; i < nutrientsToInclude.length; i++) {
+        //console.log(nutrientsToInclude[i]);
+        var nutrientLi = document.createElement("li");
+        var nutrientValues = myRecipeObject.totalNutrients[nutrientsToInclude[i]];
+        //console.log(nutrientValues);
+        nutrientLi.textContent = nutrientValues.label + ": " + Math.round(nutrientValues.quantity) + nutrientValues.unit;
+        modalList.appendChild(nutrientLi);
+
+        //nutrientValuesByIng[i] += nutrientValues.quantity;
+    }
+})
 recipeList.addEventListener("click", function(event){
     refresh();
+    event.preventDefault();
+    
     // var ingredientNum = event.target.getAttribute("id").split("-")[2];
     var ingredientNum = 0;
     // console.log(myRecipeObject.ingredients[ingredientNum].text);
@@ -346,11 +378,13 @@ recipeList.addEventListener("click", function(event){
         postIngredient(ingredientObject)
         .then((data) => {
             //console.log(data); // JSON data parsed by `data.json()` call
-            ingredientHeader.textContent = ingredientObject.text;
+            //ingredientHeader.textContent = ingredientObject.text;
+            modalHeader.textContent = ingredientObject.text;
 
             var caloriesLi = document.createElement("li");
-            caloriesLi.textContent = "Calories: " + data.calories;
-            ingredientList.appendChild(caloriesLi);
+            caloriesLi.textContent = "Calories: " + Math.round(data.calories);
+            //ingredientList.appendChild(caloriesLi);
+            modalList.appendChild(caloriesLi)
 
             //caloriesByIng += data.calories;
             console.log(data.totalNutrients);
@@ -361,8 +395,9 @@ recipeList.addEventListener("click", function(event){
                 var nutrientValues = data.totalNutrients[nutrientsToInclude[i]];
                 if (nutrientValues && nutrientValues.quantity > 0) {
                     //console.log(nutrientValues);
-                    nutrientLi.textContent = nutrientValues.label + ": " + nutrientValues.quantity + nutrientValues.unit;
-                    ingredientList.appendChild(nutrientLi);
+                    nutrientLi.textContent = nutrientValues.label + ": " + Math.round(nutrientValues.quantity) + nutrientValues.unit;
+                    //ingredientList.appendChild(nutrientLi);
+                    modalList.appendChild(nutrientLi);
                 }
                 
                 
@@ -380,11 +415,12 @@ recipeList.addEventListener("click", function(event){
                 subtractButton.textContent = "Subtract";
                 ingredientDiv.appendChild(subtractButton);
             }
-            
+            toggleModal();
             //console.log(caloriesByIng,nutrientValuesByIng);
             return data;
 
         });
+        
     }
     
 })
@@ -431,6 +467,8 @@ saveButton.addEventListener("click", function(){
 
 
 })
+
+
 
 function init() {
     displaySingleRecipe(window.location.search);
