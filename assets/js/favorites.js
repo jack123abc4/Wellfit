@@ -109,7 +109,7 @@ function flipSaveButton(buttonNum) {
 
 
 document.addEventListener("click", function(event) {
-    //console.log(event.target.tagName);
+    console.log(event.target);
     if (event.target.tagName === "BUTTON") {
         console.log(event.target);
         // console.log(event.target["id"]);
@@ -132,6 +132,16 @@ document.addEventListener("click", function(event) {
         //     replaceIngredient(ingredientHeader["textContent"],document.querySelector("#input-field").value);
         // }
            
+    }
+    else if (event.target.classList.contains("search-result")) {
+        var targetedEl = event.target;
+        if (!targetedEl.id) {
+            targetedEl = $(targetedEl).parent("div");
+        }
+        targetedEl = $(targetedEl);
+        var targetNum = targetedEl[0].id.split("-")[2];
+        document.location.replace('./singleResult.html' + recipeResults[targetNum]);
+        
     }
 
 })
