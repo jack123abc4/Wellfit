@@ -41,7 +41,7 @@ function createRecipeThumbnail(recipe) {
     recipeImage.classList.add("recipe-thumbnail-img", "search-result");
     recipeDiv.appendChild(recipeHeader);
     recipeDiv.appendChild(recipeImage);
-    card.querySelector('#center-div').appendChild(recipeDiv)
+    card.querySelector('#center-div').appendChild(recipeDiv);
     return card;
     return recipeDiv;
 }
@@ -52,9 +52,15 @@ function displayMultipleRecipes(searchResults) {
         var recipe = searchResults.hits[i].recipe;
         recipeResults.push(recipe);
         recipeThumbnail = createRecipeThumbnail(recipe);
-        recipeThumbnail.setAttribute("id", "recipe-thumbnail-" + i);
-        recipeThumbnail.classList.add("recipe-thumbnail", "search-result");
-        recipeList.appendChild(recipeThumbnail);
+        console.log("rec thumb",recipeThumbnail);
+        var thumbnailDiv = recipeThumbnail.querySelector("div");
+        var parentThumbnailDiv = $(thumbnailDiv).parent();
+        $(thumbnailDiv).attr("id", "recipe-thumbnail-" + i);
+        $(parentThumbnailDiv).attr("id", "recipe-thumbnail-" + i);
+        $(thumbnailDiv).addClass("recipe-thumbnail", "search-result");
+        $(parentThumbnailDiv).addClass("recipe-thumbnail", "search-result");
+        console.log("child,parent",thumbnailDiv,parentThumbnailDiv);
+        recipeList.appendChild(thumbnailDiv);
     }
     console.log(recipeResults);
 }
@@ -104,10 +110,12 @@ function clickListener(event) {
         if (!targetEl.getAttribute("id")) {
             targetEl = $(targetEl).parent();
         }
-        console.log(targetEl);
-        console.log(targetEl.attr("id"));
-        
-        var recipeNum = targetEl.attr("id").split("-")[2];
+        console.log("target element",targetEl);
+        console.log("children",$(targetEl).children());
+        console.log("parent",$(targetEl).parent());
+        console.log("grandparent",$(targetEl).parent().parent());
+        var grandparent = $(targetEl).parent().parent();
+        var recipeNum = grandparent.attr("id").split("-")[2];
         var recipe = recipeResults[recipeNum];
         document.location.replace('./singleResult.html?search=' + searchTerm + "&num=" + recipeNum);
     }
