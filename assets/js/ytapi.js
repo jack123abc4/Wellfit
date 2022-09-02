@@ -5,7 +5,7 @@ var YTKEY = "AIzaSyBY1dL8Q9nkhqy5NfIC-4sruEtjLYyoEHU";
 var search = "";
 var duration = "any";
 var filter = "relevance";
-var maxResults = 3;
+var maxResults = 1;
 
 // ES6 - Async/Await
 // Module/Reusable function
