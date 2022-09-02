@@ -1,7 +1,7 @@
 // ytapi.sj
 
 // variables
-var YTKEY = "AIzaSyBY1dL8Q9nkhqy5NfIC-4sruEtjLYyoEHU";
+// var YTKEY = "AIzaSyDJeIv8NWxPkWo2_SN2LKn57SahIyrIyx4";
 var search = "";
 var duration = "any";
 var filter = "relevance";
