@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WellFit</title>
+    <title>Recipes</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <script src="https://kit.fontawesome.com/45142689e7.js" crossorigin="anonymous"></script>
@@ -43,18 +43,18 @@
 			</ul>
 		</div>
 	</nav>
-
+        <!-- Container for search bar and displays results below -->
         <div class="hero-body">
             <div class="container flex items-center justify-center h-screen">
                 <div class="column">
                     <h1 class="title text-white">
                         Search for a Recipe 
                     </h1>
-                    
+                    <!-- contains the recipes below the search bar on click -->
                     <div class="box">
                         <div class="field">
                             <p class="control is-expanded">
-
+                                <!-- search bar -->
                                 <form>   
                                     <label for="search-result" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                                     <div class="relative">
@@ -69,16 +69,13 @@
                         </div>
                     </div>
                     <br>
+                    <!-- cards to organize recipes individually -->
                     <div class="container absolute mt-4" id="card-div">
                         <ul id="recipe-list" class="text-black absolute space-y-4 w-64"></ul>
                     </div>
-        </div>
-                                
                 </div>
             </div>
-
-    </section>
-
+        </div>        
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
