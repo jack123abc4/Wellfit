@@ -53,7 +53,9 @@ $(document).ready(function() {
   });
 
   function displayVideos(data) {
-
+    for (var i = 0; i < $(document.querySelector("#ytRecipe")).children().length; i++) {
+      $(document.querySelector("#ytRecipe")).children()[i].remove();
+    }
     $("#search-bar").val("");
 
     var videoData = "";

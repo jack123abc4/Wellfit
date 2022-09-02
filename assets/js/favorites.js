@@ -9,7 +9,25 @@ var recipeResults = [];
 
 var recipeIndex = 0;
 
+
+function createCard() {
+    var outerDiv = document.createElement('div')
+    outerDiv.classList.add('flex', 'justify-center',)
+    var innerDiv = document.createElement('div')
+    innerDiv.classList.add('flex', 'flex-col', 'md:flex-row', 'md:max-w-xl', 'rounded-lg', 'bg-white', 'shadow-lg',)
+    outerDiv.appendChild(innerDiv)
+    var imgEl = document.createElement('img')
+    imgEl.setAttribute('class','flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg')
+    innerDiv.appendChild(imgEl)
+    var centerDiv = document.createElement('div')
+    centerDiv.setAttribute('class','p-6 flex flex-col justify-start')
+    centerDiv.setAttribute('id','center-div')
+    innerDiv.appendChild(centerDiv)
+    return outerDiv;
+};
+
 function createRecipeThumbnail(recipe) {
+    var card = createCard();
     console.log(recipe.label);
     var recipeDiv = document.createElement("div");
     var recipeHeader = document.createElement("h3");
@@ -18,23 +36,27 @@ function createRecipeThumbnail(recipe) {
     var recipeImage = document.createElement("img");
     recipeImage.setAttribute("src", recipe.image);
     recipeImage.classList.add("recipe-thumbnail-img", "search-result");
+    recipeImage.setAttribute("id", "recipe-thumbnail-" + recipeIndex)
+    recipeIndex++;
     var saveButton = document.createElement("button");
     saveButton.state = "saved";
     saveButton.innerHTML = "Unsave";
     saveButton.id = "save-btn-" + recipeIndex;
-    saveButton.classList.add("is-medium")
+    saveButton.type = "button";
+    saveButton.setAttribute("class", "mt-3 mt-3 bg-white border border-gray-500 hover:border-green-600 text-gray-500 hover:text-green-600 font-bold py-2 px-4 rounded-full mt-3");
+
+    
 
     recipeDiv.appendChild(recipeHeader);
     recipeDiv.appendChild(recipeImage);
     recipeDiv.appendChild(saveButton);
-    return recipeDiv;
+    card.querySelector('#center-div').appendChild(recipeDiv);
+    return card;
 
 }
 
 function displayRecipe(recipe) {
     recipeThumbnail = createRecipeThumbnail(recipe);
-    recipeThumbnail.setAttribute("id", "recipe-thumbnail-" + recipeIndex);
-    recipeIndex++;
     recipeThumbnail.classList.add("recipe-thumbnail", "search-result");
     recipeList.appendChild(recipeThumbnail);
 }
@@ -110,6 +132,7 @@ function flipSaveButton(buttonNum) {
 
 document.addEventListener("click", function(event) {
     console.log(event.target);
+    console.log(event.target.tagName);
     if (event.target.tagName === "BUTTON") {
         console.log(event.target);
         // console.log(event.target["id"]);
@@ -133,13 +156,12 @@ document.addEventListener("click", function(event) {
         // }
            
     }
-    else if (event.target.classList.contains("search-result")) {
-        var targetedEl = event.target;
-        if (!targetedEl.id) {
-            targetedEl = $(targetedEl).parent("div");
-        }
-        targetedEl = $(targetedEl);
+    else if (event.target.classList.contains("search-result") && event.target.tagName === "IMG") {
+        var targetedEl = $(event.target);
+        var allImgEls = $("img")
+        console.log("og target",targetedEl[0]);
         var targetNum = targetedEl[0].id.split("-")[2];
+        console.log(targetNum);
         document.location.replace('./singleResult.html' + recipeResults[targetNum]);
         
     }
