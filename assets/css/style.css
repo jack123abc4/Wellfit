@@ -46,3 +46,7 @@ body {
     position: absolute;
     transform: translate(-20%, 0)
 }
+
+#videos-container {
+    transform: translate(10%, 0)
+}
