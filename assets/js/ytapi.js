@@ -1,7 +1,8 @@
 // ytapi.sj
 
-// variables
+// api key
 var YTKEY = "AIzaSyAlYrgp2sgGj3bMROSzqJ4PXpegUI6VgYM";
+// variables
 var search = "";
 var duration = "any";
 var filter = "relevance";
@@ -25,16 +26,12 @@ async function getYTVideo(search) {
   }
 }
 
+// formats functional buttons
 $(document).ready(function() {
 
-  // $("#duration").change(function () {
-  //   duration = $(this).children("option:selected").val();
-  // });
-  // $("#vid-filter").change(function () {
-  //   filter = $(this).children("option:selected").val();
-  // });
   $("#vidForm").submit(async function(e) {
     e.preventDefault();
+
 
     search = $("#search-bar").val();
 
@@ -52,6 +49,7 @@ $(document).ready(function() {
     search = $("#search-bar").val();
   });
 
+  // cancels previous video in favor of the new search
   function displayVideos(data) {
     for (var i = 0; i < $(document.querySelector("#ytRecipe")).children().length; i++) {
       $(document.querySelector("#ytRecipe")).children()[i].remove();
@@ -62,6 +60,7 @@ $(document).ready(function() {
 
     $("#vid-layout").show();
 
+    // pulls the actual video onto the page
     data.items.forEach((item) => {
       videoData = `
                     <iframe width="800" height="500" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
