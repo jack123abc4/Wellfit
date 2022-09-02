@@ -6,7 +6,6 @@ var search = "";
 var duration = "any";
 var filter = "relevance";
 var maxResults = 1;
-const videoEl = document.querySelector(ytRecipe);
 
 // ES6 - Async/Await
 // Module/Reusable function
