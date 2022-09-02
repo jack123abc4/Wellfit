@@ -6,7 +6,6 @@ var search = "";
 var duration = "any";
 var filter = "relevance";
 var maxResults = 1;
-const videoEl = document.querySelector(ytRecipe);
 
 // ES6 - Async/Await
 // Module/Reusable function
@@ -54,7 +53,9 @@ $(document).ready(function() {
   });
 
   function displayVideos(data) {
-
+    for (var i = 0; i < $(document.querySelector("#ytRecipe")).children().length; i++) {
+      $(document.querySelector("#ytRecipe")).children()[i].remove();
+    }
     $("#search-bar").val("");
 
     var videoData = "";
