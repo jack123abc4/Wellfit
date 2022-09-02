@@ -27,12 +27,6 @@ async function getYTVideo(search) {
 
 $(document).ready(function() {
 
-  // $("#duration").change(function () {
-  //   duration = $(this).children("option:selected").val();
-  // });
-  // $("#vid-filter").change(function () {
-  //   filter = $(this).children("option:selected").val();
-  // });
   $("#vidForm").submit(async function(e) {
     e.preventDefault();
 
@@ -63,11 +57,7 @@ $(document).ready(function() {
     data.items.forEach((item) => {
       videoData = `
                     <tr>
-                    <td>
-                    <a target="_blank" href="https://www.youtube.com/watch?v=${item.id.videoId}">
-                    ${item.snippet.title}</td>
-                    <td>
-                    <iframe width="300" height="305" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="400" height="350" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </td>
                     <td>
                     <a target="_blank" href="https://www.youtube.com/channel/${item.snippet.channelId}">${item.snippet.channelTitle}</a>
