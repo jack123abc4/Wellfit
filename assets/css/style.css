@@ -39,3 +39,10 @@ body {
     letter-spacing: 3px;
     font-size: 3.4em;
 }
+
+#recipe-list {
+    width: 800px;
+    height: auto;
+    position: absolute;
+    transform: translate(-20%, 0)
+}
