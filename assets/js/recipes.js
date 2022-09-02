@@ -12,7 +12,7 @@ var recipeResults = [];
 
 var searchTerm;
 
-function createcard() {
+function createCard() {
     var outerDiv = document.createElement('div')
     outerDiv.classList.add('flex', 'justify-center',)
     var innerDiv = document.createElement('div')
@@ -29,7 +29,7 @@ function createcard() {
 };
 
 function createRecipeThumbnail(recipe) {
-    var card = createcard();
+    var card = createCard();
     console.log(recipe.label);
     var recipeDiv = document.createElement("div");
     var recipeHeader = document.createElement("h3");
