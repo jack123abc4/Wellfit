@@ -28,8 +28,9 @@ viewButton.textContent = "View";
 var modalViewButton = document.querySelector("#modal-nutrition-btn");
 var modalHeader = document.querySelector("#modal-header");
 var modalList = document.querySelector("#modal-list");
+var modalInput = document.querySelector("#modal-input");
 
-var saveButton = document.querySelector("#save-btn")
+var saveButton = document.querySelector("#save-btn");
 
 var nutrientsToInclude = ["CA", "CHOCDF", "CHOLE", "FAT", "FE", "FIBTG", "K", "NA", "PROCNT", "SUGAR"];
 var nutrientValuesByIng = [0,0,0,0,0,0,0,0,0,0];
@@ -226,7 +227,9 @@ function getIngredientByText(ingredientText) {
     }
 }
 
-function subtractIngredient(ingredientText) { 
+//function subtractIngredient(ingredientText) {
+function subtractIngredient() { 
+    var ingredientText = modalHeader.textContent;
     var newIngredients = [];
     var newIngredientLines = [];
     for (var i = 0; i < myRecipeObject.ingredientLines.length; i++) {
@@ -247,28 +250,39 @@ function subtractIngredient(ingredientText) {
 
 }
 
-function replaceIngredient(subIngrText,addIngrText) {
+//function replaceIngredient(subIngrText,addIngrText) {
+function replaceIngredient() {
+    var subIngrText = modalHeader.textContent;
+    var addIngrText = modalInput.value;
     var quantity = getIngredientByText(subIngrText).quantity;
     var unit = getIngredientByText(subIngrText).measure;
     subtractIngredient(subIngrText);
     parseIngredient(addIngrText,quantity,unit);
 }
 
-function displayInputDiv() {
-    if (!ingredientDiv.querySelector("#input-div")) {
-        var inputDiv = document.createElement("div");
-        inputDiv["id"] = "input-div";
-        ingredientDiv.appendChild(inputDiv);
+//function displayInputDiv() {
+function displayInputModal() {
+    refresh();
+    $(document.querySelector("#modal-sub-btn")).css("display","none");
+    $(document.querySelector("#modal-replace-btn")).css("display","none");
+    $(document.querySelector("#modal-search-btn")).css("display","inline");
+    $(document.querySelector("#modal-input-div")).css("display","block");
 
-        var inputField = document.createElement("input");
-        inputField["id"] = "input-field";
-        inputDiv.appendChild(inputField);
+    toggleModal();
+    // if (!ingredientDiv.querySelector("#input-div")) {
+    //     var inputDiv = document.createElement("div");
+    //     inputDiv["id"] = "input-div";
+    //     ingredientDiv.appendChild(inputDiv);
 
-        var inputButton = document.createElement("button");
-        inputButton["textContent"] = "Search";
-        inputButton["id"] = "input-btn";
-        inputDiv.appendChild(inputButton);
-    }   
+    //     var inputField = document.createElement("input");
+    //     inputField["id"] = "input-field";
+    //     inputDiv.appendChild(inputField);
+
+    //     var inputButton = document.createElement("button");
+    //     inputButton["textContent"] = "Search";
+    //     inputButton["id"] = "input-btn";
+    //     inputDiv.appendChild(inputButton);
+    // }   
     
 
 
@@ -342,7 +356,8 @@ viewButton.addEventListener("click", function() {
 
 modalViewButton.addEventListener("click", function() {
     refresh();
-    //modalHeader.textContent = "TOTAL NUTRIENTS";
+
+    modalHeader.textContent = "";
 
     var caloriesLi = document.createElement("li");
     caloriesLi.textContent = "Calories: " + Math.round(myRecipeObject.calories);
@@ -356,9 +371,15 @@ modalViewButton.addEventListener("click", function() {
         //console.log(nutrientValues);
         nutrientLi.textContent = nutrientValues.label + ": " + Math.round(nutrientValues.quantity) + nutrientValues.unit;
         modalList.appendChild(nutrientLi);
-
+        
         //nutrientValuesByIng[i] += nutrientValues.quantity;
     }
+    $(document.querySelector("#modal-input-div")).css("display","none");
+    $(document.querySelector("#modal-sub-btn")).css("display","none");
+    $(document.querySelector("#modal-search-btn")).css("display","none");
+    $(document.querySelector("#modal-replace-btn")).css("display","none");
+    toggleModal();
+
 })
 recipeList.addEventListener("click", function(event){
     refresh();
@@ -404,17 +425,21 @@ recipeList.addEventListener("click", function(event){
 
                 //nutrientValuesByIng[i] += nutrientValues.quantity;
             }
-            if (!ingredientDiv.querySelector("button")) {
-                var replaceButton = document.createElement("button");
-                replaceButton.setAttribute("id", "replace-btn");
-                replaceButton.textContent = "Replace";
-                ingredientDiv.appendChild(replaceButton);
+            $(document.querySelector("#modal-sub-btn")).css("display","inline");
+            $(document.querySelector("#modal-replace-btn")).css("display","inline");
+            $(document.querySelector("#modal-input-div")).css("display","none");
+            $(document.querySelector("#modal-search-btn")).css("display","none");
+            // if (!ingredientDiv.querySelector("button")) {
+            //     var replaceButton = document.createElement("button");
+            //     replaceButton.setAttribute("id", "replace-btn");
+            //     replaceButton.textContent = "Replace";
+            //     ingredientDiv.appendChild(replaceButton);
 
-                var subtractButton = document.createElement("button");
-                subtractButton.setAttribute("id", "sub-btn");
-                subtractButton.textContent = "Subtract";
-                ingredientDiv.appendChild(subtractButton);
-            }
+            //     var subtractButton = document.createElement("button");
+            //     subtractButton.setAttribute("id", "sub-btn");
+            //     subtractButton.textContent = "Subtract";
+            //     ingredientDiv.appendChild(subtractButton);
+            // }
             toggleModal();
             //console.log(caloriesByIng,nutrientValuesByIng);
             return data;
@@ -470,6 +495,15 @@ saveButton.addEventListener("click", function(){
 
 
 
+
+function toggleModal () {
+    const body = document.querySelector('body')
+    const modal = document.querySelector('.modal')
+    modal.classList.toggle('opacity-0')
+    modal.classList.toggle('pointer-events-none')
+    body.classList.toggle('modal-active')
+}
+
 function init() {
     displaySingleRecipe(window.location.search);
     saveButton.state = "unsaved"
@@ -483,6 +517,43 @@ function init() {
         saveButton.state = "unsaved";
         saveButton.innerHTML = "Save";
     }
+    var openmodal = document.querySelectorAll('.modal-open')
+    for (var i = 0; i < openmodal.length; i++) {
+    openmodal[i].addEventListener('click', function(event){
+        event.preventDefault()
+        toggleModal()
+    })
+    }
+
+    const overlay = document.querySelector('.modal-overlay')
+    overlay.addEventListener('click', toggleModal)
+
+    const modalSubButton = document.querySelector('#modal-sub-btn')
+    modalSubButton.addEventListener('click', subtractIngredient)
+
+    const modalReplaceButton = document.querySelector('#modal-replace-btn')
+    modalReplaceButton.addEventListener('click', displayInputModal)
+
+    const modalSearchButton = document.querySelector('#modal-search-btn')
+    modalSearchButton.addEventListener('click', replaceIngredient)
+
+    var closemodal = document.querySelectorAll('.modal-close')
+    for (var i = 0; i < closemodal.length; i++) {
+    closemodal[i].addEventListener('click', toggleModal)
+    }
+
+    document.onkeydown = function(evt) {
+    evt = evt || window.event
+    var isEscape = false
+    if ("key" in evt) {
+        isEscape = (evt.key === "Escape" || evt.key === "Esc")
+    } else {
+        isEscape = (evt.keyCode === 27)
+    }
+    if (isEscape && document.body.classList.contains('modal-active')) {
+        toggleModal()
+    }
+    };
 }
 
 init();
