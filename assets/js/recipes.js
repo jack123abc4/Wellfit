@@ -64,7 +64,7 @@ function displayMultipleRecipes(searchResults) {
     console.log(recipeResults);
 }
 function displayResults(fullURL) {
-    wipeResults();
+    
     fetch(fullURL, {
         method: 'GET', //GET is the default.
         })
@@ -83,18 +83,22 @@ function displayResults(fullURL) {
 }
 
 function wipeResults() {
-    
-    var headers = document.querySelectorAll("h3");
-    var images = document.querySelectorAll("img");
-    console.log("Headers: " + headers);
-    console.log("Images: " + images);
-    for (var i = 0; i < headers.length; i++) {
-        headers[i].remove();
-        images[i].remove();
-        
+    var rDivs = recipeList.querySelectorAll("div");
+    for (var i = 0; i < rDivs.length; i++) {
+        rDivs[i].remove();
     }
-    console.log("Headers: " + headers);
-    console.log("Images: " + images);
+    recipeResults = [];
+    // var headers = document.querySelectorAll("h3");
+    // var images = document.querySelectorAll("img");
+    // console.log("Headers: " + headers);
+    // console.log("Images: " + images);
+    // for (var i = 0; i < headers.length; i++) {
+    //     headers[i].remove();
+    //     images[i].remove();
+        
+    // }
+    // console.log("Headers: " + headers);
+    // console.log("Images: " + images);
 }
 
 function searchTermToURL(searchTerm) {
@@ -124,6 +128,7 @@ searchButton.addEventListener("click", function() {
     console.log(searchInput.value);
     searchTerm = searchInput.value;
     var searchURL = searchTermToURL(searchInput.value);
+    wipeResults();
     displayResults(searchURL);
 })
 
