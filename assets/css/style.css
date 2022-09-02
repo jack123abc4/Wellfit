@@ -16,7 +16,7 @@ body {
     line-height: 1.5;
 }
 
-#recipe-list
+#recipe-list, #favorites-list
  {
     columns: 2;
     column-gap: 100px;

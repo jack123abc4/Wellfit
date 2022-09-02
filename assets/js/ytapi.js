@@ -1,11 +1,12 @@
 // ytapi.sj
 
 // variables
-var YTKEY = "AIzaSyDJeIv8NWxPkWo2_SN2LKn57SahIyrIyx4";
+var YTKEY = "AIzaSyAlYrgp2sgGj3bMROSzqJ4PXpegUI6VgYM";
 var search = "";
 var duration = "any";
 var filter = "relevance";
-var maxResults = 3;
+var maxResults = 1;
+const videoEl = document.querySelector(ytRecipe);
 
 // ES6 - Async/Await
 // Module/Reusable function
@@ -62,20 +63,11 @@ $(document).ready(function() {
 
     data.items.forEach((item) => {
       videoData = `
-                    <tr>
-                    <td>
-                    <a target="_blank" href="https://www.youtube.com/watch?v=${item.id.videoId}">
-                    ${item.snippet.title}</td>
-                    <td>
-                    <iframe width="300" height="305" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </td>
-                    <td>
-                    <a target="_blank" href="https://www.youtube.com/channel/${item.snippet.channelId}">${item.snippet.channelTitle}</a>
-                    </td>
-                    </tr
+                    <iframe width="420" height="315" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     `;
-      $("#results").append(videoData);
+      $("#ytRecipe").append(videoData);
     });
   }
 });
+
 
