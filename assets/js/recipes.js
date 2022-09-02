@@ -1,7 +1,4 @@
-// var searchTerm = "fried chicken";
-// var fullURL = "https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=03f13ddd&app_key=02579918e4ba389d465eaa6dd2ed2a99"
-
-// var mainDiv = document.querySelector("#card-div");
+// html element variables
 var recipeHeader = document.querySelector("h2");
 var recipeParagraph = document.querySelector("p");
 var recipeList = document.querySelector("#recipe-list");
@@ -12,6 +9,7 @@ var recipeResults = [];
 
 var searchTerm;
 
+// creates card wrapper for dynamically created HTML elements
 function createCard() {
     var outerDiv = document.createElement('div')
     outerDiv.classList.add('flex', 'justify-center',)
@@ -28,6 +26,7 @@ function createCard() {
     return outerDiv;
 };
 
+// dynamically creates HTML elements for recipe thumbnails
 function createRecipeThumbnail(recipe) {
     var card = createCard();
     console.log(recipe.label);
@@ -45,6 +44,7 @@ function createRecipeThumbnail(recipe) {
     return recipeDiv;
 }
 
+// displays recipe thumbnails, sets relavent attributes
 function displayMultipleRecipes(searchResults) {
     recipeResults = [];
     for (var i = 0; i < searchResults.hits.length; i++) {
@@ -63,13 +63,14 @@ function displayMultipleRecipes(searchResults) {
     }
     console.log(recipeResults);
 }
+
+// pulls data from Edamam API
 function displayResults(fullURL) {
     
     fetch(fullURL, {
         method: 'GET', //GET is the default.
         })
         .then(function (response) {
-            // console.log(response);
             return response.json();
         })
         .then(function (data) {
@@ -82,31 +83,23 @@ function displayResults(fullURL) {
         });
 }
 
+// wipes previously displayed thumbnails if completes another recipe search
 function wipeResults() {
     var rDivs = recipeList.querySelectorAll("div");
     for (var i = 0; i < rDivs.length; i++) {
         rDivs[i].remove();
     }
     recipeResults = [];
-    // var headers = document.querySelectorAll("h3");
-    // var images = document.querySelectorAll("img");
-    // console.log("Headers: " + headers);
-    // console.log("Images: " + images);
-    // for (var i = 0; i < headers.length; i++) {
-    //     headers[i].remove();
-    //     images[i].remove();
-        
-    // }
-    // console.log("Headers: " + headers);
-    // console.log("Images: " + images);
 }
 
+// converts user serach term to URL for the Edamam API
 function searchTermToURL(searchTerm) {
     return ("https://api.edamam.com/api/recipes/v2?type=public&q=" + searchTerm + "&app_id=03f13ddd&app_key=02579918e4ba389d465eaa6dd2ed2a99");
 }
 
 document.addEventListener("click", clickListener);
 
+// handles clicks, looks to see if dynamically created HTML elements have been clicked
 function clickListener(event) {
     var targetEl = event.target;
     if (targetEl.classList.contains("search-result")) {
@@ -124,6 +117,7 @@ function clickListener(event) {
     }
 }
 
+// handles clicks on search button
 searchButton.addEventListener("click", function() {
     console.log(searchInput.value);
     searchTerm = searchInput.value;
@@ -132,8 +126,8 @@ searchButton.addEventListener("click", function() {
     displayResults(searchURL);
 })
 
+// scrolling
 let pageHeight = window.innerHeight;
 window.scrollBy(0, pageHeight);
 
 scrollBy();
-//displayResults();
