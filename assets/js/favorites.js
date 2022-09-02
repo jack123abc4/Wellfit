@@ -36,8 +36,9 @@ function createRecipeThumbnail(recipe) {
     var recipeImage = document.createElement("img");
     recipeImage.setAttribute("src", recipe.image);
     recipeImage.classList.add("recipe-thumbnail-img", "search-result");
+    console.log("Recipe ind: " + recipeIndex);
     recipeImage.setAttribute("id", "recipe-thumbnail-" + recipeIndex)
-    recipeIndex++;
+    
     var saveButton = document.createElement("button");
     saveButton.state = "saved";
     saveButton.innerHTML = "Unsave";
@@ -51,6 +52,7 @@ function createRecipeThumbnail(recipe) {
     recipeDiv.appendChild(recipeImage);
     recipeDiv.appendChild(saveButton);
     card.querySelector('#center-div').appendChild(recipeDiv);
+    recipeIndex++;
     return card;
 
 }
