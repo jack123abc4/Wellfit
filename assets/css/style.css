@@ -16,7 +16,8 @@ body {
     line-height: 1.5;
 }
 
-#recipe-list, #favorites-list
+#recipe-list,
+#favorites-list
  {
     columns: 2;
     column-gap: 100px;
@@ -44,7 +45,7 @@ body {
     width: 800px;
     height: auto;
     position: absolute;
-    transform: translate(-20%, 0)
+    transform: translate(-20%, 0);
 }
 
 #videos-container {
