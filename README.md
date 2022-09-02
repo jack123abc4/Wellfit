@@ -18,6 +18,11 @@ To search videos, click the "Videos" tab and search keywords to display a list o
 
 To revist favorited videos, click the "Favorites" tab. Any recipe that has been previously saved will appear here.
 
+
+![Wellfit:](assets\images\screenshot_recipe.PNG)
+![Wellfit:](assets\images\screenshot_nutrition.PNG)
+![Wellfit:](assets\images\screenshot_videos.PNG)
+![Wellfit:](assets\images\screenshot_favorites.PNG)
 https://github.com/jack123abc4/Wellfit
 
 ## Credits
