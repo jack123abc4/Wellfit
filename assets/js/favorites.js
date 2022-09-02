@@ -140,7 +140,8 @@ document.addEventListener("click", function(event) {
         }
         targetedEl = $(targetedEl);
         var targetNum = targetedEl[0].id.split("-")[2];
-        console.log(recipeList[targetNum]);
+        document.location.replace('./singleResult.html' + recipeResults[targetNum]);
+        
     }
 
 })
