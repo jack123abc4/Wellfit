@@ -4,10 +4,7 @@ $('.lists a').click(function(e){
   $(this).text('Remove');
 });
 var mainDiv = document.querySelector("#main-div");
-var recipeHeader = mainDiv.querySelector("h2");
-var recipeParagraph = mainDiv.querySelector("p");
-var recipeList = mainDiv.querySelector("ul");
-var recipeImage = mainDiv.querySelector("img");
+var recipeList = document.querySelector("#favorites-list");
 var recipeResults = [];
 
 var recipeIndex = 0;
@@ -108,7 +105,7 @@ function flipSaveButton(buttonNum) {
 
 
 
-mainDiv.addEventListener("click", function(event) {
+document.addEventListener("click", function(event) {
     //console.log(event.target.tagName);
     if (event.target.tagName === "BUTTON") {
         console.log(event.target);
