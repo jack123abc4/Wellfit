@@ -78,13 +78,16 @@ function searchTermToURL(searchTerm) {
 
 function init() {
     for (var i = 0; i < Object.keys(localStorage).length; i++) {
-        recipeResults.push(Object.keys(localStorage)[i]);
-        var params = Object.keys(localStorage)[i];
-        var splitParams = params.split("&");
-        var searchTerm = splitParams[0].split("=")[1].replace("%20", " ");
-        var recipeNum = splitParams[1].split("=")[1];
-        var searchURL = searchTermToURL(searchTerm);
-        displayResults(searchURL,recipeNum);
+        if (Object.keys(localStorage)[i].includes("?search=") && Object.keys(localStorage)[i].includes("&num=")) {
+            recipeResults.push(Object.keys(localStorage)[i]);
+            var params = Object.keys(localStorage)[i];
+            var splitParams = params.split("&");
+            var searchTerm = splitParams[0].split("=")[1].replace("%20", " ");
+            var recipeNum = splitParams[1].split("=")[1];
+            var searchURL = searchTermToURL(searchTerm);
+            displayResults(searchURL,recipeNum);
+        }
+        
 
     }
     
