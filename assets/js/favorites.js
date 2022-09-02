@@ -133,12 +133,14 @@ document.addEventListener("click", function(event) {
         // }
            
     }
-    else if (event.target.classList.includes("recipe-thumbnail")) {
+    else if (event.target.classList.contains("search-result")) {
         var targetedEl = event.target;
-        while (!targetedEl.id) {
-            targetedEl = $(targetedEl).parent();
+        if (!targetedEl.id) {
+            targetedEl = $(targetedEl).parent("div");
         }
-        console.log(targetedEl,targetedEl.id,targetedEl)
+        targetedEl = $(targetedEl);
+        var targetNum = targetedEl[0].id.split("-")[2];
+        console.log(recipeList[targetNum]);
     }
 
 })
