@@ -4,52 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Arimo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Arimo&display=swap" rel="stylesheet"> 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/45142689e7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./assets/css/recipes.css">
     <link rel="stylesheet" href=".\assets\css\style.css">
-    
+
     <title>Recipes</title>
 </head>
- 
+
 <body class="bg-hero bg-no-repeat bg-cover bg-center bg-fixed font-sans leading-normal tracking-normal" style="background-image: url('https://img.freepik.com/free-photo/healthy-life-sport-concept-sneakers-with-apples-towel-bottle-water-wooden-background-copy-space_1220-1474.jpg?w=1800&t=st=1661792367~exp=1661792967~hmac=b4c659e78a3194557b1fc44b536f3d4be08c2f131d4fb75a5000ff868426746f');">
- 
-    <nav class="flex items-center justify-between flex-wrap p-6 fixed w-full z-10 top-0">
-        <div class="flex items-center flex-shrink-0 text-white mr-6">
-                <a class="navbar-item" href="./index.html">
+
+	<nav class="flex items-center justify-between flex-wrap p-6 fixed w-full z-10 top-0">
+		<div class="flex items-center flex-shrink-0 text-white mr-6">
+				<a class="navbar-item" href="./index.html">
                     <img src="assets\images\wellfit.png" class="rounded-full" id="logo" alt="Logo">
                   </a>
-        </div>
-        <div class="block lg:hidden">
-            <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white">
-                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Home</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-            </button>
-        </div>
+		</div>
+		<div class="block lg:hidden">
+			<button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white">
+				<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Home</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+			</button>
+		</div>
+
+		<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
+			<ul class="list-reset lg:flex justify-end flex-1 items-center">
+				<li class="mr-3">
+					<a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./index.html"><i class="fa-solid fa-house"></i> Home</a>
+				</li>
+				<li class="mr-3">
+					<a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./recipes.html"><i class="fa-solid fa-book"></i> Recipes</a>
+				</li>
+				<li class="mr-3">
+					<a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./videos.html"><i class="fa-solid fa-book"></i> Videos</a>
+				</li>
+				<li class="mr-3">
+					<a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./favorites.html"><i class="fa-solid fa-heart"></i> Favorites</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
  
-        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
-            <ul class="list-reset lg:flex justify-end flex-1 items-center">
-                <li class="mr-3">
-                    <a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./index.html"><i class="fa-solid fa-house"></i> Home</a>
-                </li>
-                <li class="mr-3">
-                    <a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./recipes.html"><i class="fa-solid fa-book"></i> Recipes</a>
-                </li>
-                <li class="mr-3">
-                    <a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./videos.html"><i class="fa-solid fa-book"></i> Videos</a>
-                </li>
-                <li class="mr-3">
-                    <a class="inline-block text-gray-300 no-underline hover:text-gray-50 hover:text-underline py-2 px-4 text-lg" href="./favorites.html"><i class="fa-solid fa-heart"></i> Favorites</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
- 
-    <div class="hero-body">
-        <div class="container flex items-center justify-center h-screen">
+    <!-- <div class="hero-body"> -->
+        <div class="container flex items-center justify-center h-screen w-full">
             <div class="column">
                 <h1 class="title text-white">
                     Search Videos
@@ -58,7 +57,7 @@
                 <div class="box">
                     <div class="field">
                         <p class="control is-expanded">
- 
+
                             <form id="vidForm">  
                                 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                                 <div class="relative">
@@ -69,48 +68,36 @@
                                     <button id="search-btn" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                                 </div>  
                                  
- 
+
                             </form>
                             <br>
-                            
-                            <div class="flex flex-col">
-                                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                  <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
-                                    <div class="overflow-hidden">
-                                      <table class="min-w-full text-center">
-                                        <thead class="border-b bg-gray-800">
-                                          <tr>
-                                            <th scope="col" class="text-sm font-medium text-white px-6 py-4">
-                                              First
-                                            </th>
-                                            <th scope="col" class="text-sm font-medium text-white px-6 py-4">
-                                              Last
-                                            </th>
-                                          </tr>
-                                        </thead class="border-b">
-                                        <tbody>
-                                          <tr class="bg-white border-b">
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                              Mark
-                                            </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                              Otto
-                                            </td>
-                                          </tr class="bg-white border-b">
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
+                            <div class="column absolute w-10">
+                                <div class="overflow-hidden">
+                                  <table class="min-w-auto text-center table-auto absolute text-white text-lg w-full" id="vid-layout">
+                                    <thead class="border-b bg-gray-800 border-spacing-1.5">
+                                      <tr>
+                                        <th scope="col" class="text-sm font-medium text-white px-10 py-4">
+                                          Youtube Title
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                                          Youtube Video
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-white px-8 py-4">
+                                          Channel
+                                        </th>
+                                      </tr>
+                                      <tbody id="results"></tbody>
+                                    </tbody>
+                                  </table>
                                 </div>
                               </div>
-
+                          
                         </div>
                 </div>
               </div>
             </div>
           </div>
-                        <form>
-                         
+                          
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
